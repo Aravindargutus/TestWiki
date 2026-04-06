@@ -2,8 +2,8 @@
 title: Zoho Catalyst
 type: entity
 created: 2026-04-05
-updated: 2025-07-10
-sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md]
+updated: 2026-04-06
+sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md]
 tags: [zoho, catalyst, serverless, baas, platform]
 ---
 
@@ -42,6 +42,10 @@ The platform provides these major component categories:
 - [[catalyst-java-sdk-data-store]] — Full Data Store SDK operations (10 methods)
 - [[catalyst-java-sdk-stratus]] — Full Stratus SDK operations (17 sub-pages: buckets, objects, multipart, transfer manager, presigned URLs)
 - [[catalyst-serverless-functions]] — Help documentation for all 7 serverless function types
+- [[catalyst-java-sdk-cloud-scale-remaining]] — Remaining Cloud Scale + Serverless SDK ops: File Store, ZCQL, Cache, Connections, Search, Mail, Push Notifications, Functions, Circuits, AppSail
+- [[catalyst-java-sdk-zia-services]] — All 15 Zia Services SDK ops: OCR, AutoML, Face Analytics, Identity Scanner (5), Text Analytics (4), Image Moderation, Object Recognition, Barcode Scanner
+- [[catalyst-java-sdk-smartbrowz]] — All 7 SmartBrowz SDK ops: Browser Grid (6) + PDF & Screenshot (1)
+- [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]] — 20 SDK pages: Job Scheduling (15), Pipelines (3), QuickML (1), Connectors (1)
 
 ## Relationships
 

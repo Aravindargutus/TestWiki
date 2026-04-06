@@ -2,8 +2,8 @@
 title: Overview
 type: overview
 created: 2026-04-05
-updated: 2025-07-10
-sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md]
+updated: 2026-04-06
+sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md]
 ---
 
 # Overview
@@ -12,7 +12,7 @@ This wiki covers the **Zoho Catalyst** platform — a serverless Backend-as-a-Se
 
 ## Current Focus: Java SDK
 
-Four major areas of the Catalyst Java SDK have been ingested:
+**All areas of the Catalyst Java SDK v1 have been fully ingested (106 pages across 9 sources):**
 
 ### SDK Architecture
 The SDK wraps Catalyst REST APIs into a Java class hierarchy rooted at `ZCProject`, supporting Java 8, 11, and 17. Key architectural concepts include:
@@ -48,6 +48,47 @@ Stratus is Catalyst's object storage service, providing **17 SDK operations** ac
 
 The platform provides a broad surface area of components: serverless functions, cloud-scale storage (Data Store, File Store, Stratus), AI/ML (Zia), browser automation (SmartBrowz), job scheduling, pipelines, ML (QuickML), and connectors.
 
+### Remaining Cloud Scale Components
+
+The sixth ingest completes the Cloud Scale SDK coverage with **11 additional components** (21 pages):
+
+- **File Store**: Original file storage (5 ops via `ZCFile` → `ZCFolder`). Simple upload/download/delete with 100MB limit. Being superseded by Stratus.
+- **ZCQL**: Catalyst Query Language — 1 method (`executeQuery`) with v2 and OLAP flags. Queries Data Store tables.
+- **Cache**: In-memory key-value storage organized in segments (5 ops via `ZCCache` → `ZCSegment`). Default 48h expiry.
+- **Connections**: Internal-only OAuth token management for Zoho services (2 ops). Functions/AppSail only.
+- **Search**: Pattern-based search across indexed Data Store columns (1 op). Multi-table wildcard queries.
+- **Mail**: Email sending with limits (10 to, 10 CC, 5 BCC, 5 attachments/15MB). Requires console domain config.
+- **Push Notifications**: Web (50 users/call) and mobile (Android/iOS separately, requires registered app).
+- **Execute Function**: JSON in/out function invocation via `ZCatalystFunction`.
+- **Circuits**: Workflow orchestration — execute, monitor, abort. **Not available in EU, AU, IN, JP, SA, CA**.
+- **AppSail**: Persistent web service hosting. SDK init requires `AuthHeaderProvider` interface. Maven: `java-sdk:1.15.0`.
+
+### Zia Services (AI/ML)
+
+The seventh ingest covers all **15 Zia Services SDK operations**, all accessed via the unified `ZCML.getInstance()` entry point:
+
+- **Vision**: OCR (19 languages, 20MB), Face Analytics (age/gender/emotion, 3 modes), Image Moderation (safe/unsafe), Object Recognition (80 types), Barcode Scanner (multi-format)
+- **Identity Scanner**: Facial Comparison (E-KYC, global), Document Processing (Aadhaar, PAN, Passbook, Cheque — **IN DC only**)
+- **NLP (Text Analytics)**: Sentiment Analysis, NER, Keyword Extraction — individually or combined. 1500 char limit.
+- **Custom ML**: AutoML prediction via model ID. **US DC only**.
+- Privacy-first: no file storage, one-time processing, no ML training on user data.
+
+### SmartBrowz
+
+The eighth ingest covers **7 SmartBrowz SDK pages** with two sub-components:
+
+- **Browser Grid** (5 ops): Manage headless browser grids — get instance, list all, get specific, get nodes, stop. All require Admin scope.
+- **PDF & Screenshot** (2 methods): Generate visual documents from HTML, URLs, or templates. Rich options: format, margins, landscape, device emulation, password protection.
+
+### Job Scheduling + Pipelines + QuickML + Connectors
+
+The ninth ingest completes the SDK with **20 pages** across 4 remaining components:
+
+- **Job Scheduling** (15 ops): Most feature-rich component. Job Pool (2), Jobs (3: create via builder pattern for 4 target types), Cron (10: create one-time/recurring/expression, full CRUD + pause/resume/run lifecycle).
+- **Pipelines** (3 ops): CI/CD — get instance, get details, execute with branch + env vars.
+- **QuickML** (1 op): Predict via published ML endpoint key. **Not available in JP, SA, CA**.
+- **Connectors** (external): OAuth token management for Zoho services. Stores tokens in Cache. Different from Connections SDK (internal).
+
 ## Serverless Functions (Help Documentation)
 
 The Serverless Functions documentation (first non-SDK source) reveals the core compute layer of Catalyst. There are **7 distinct function types** organized into two execution tiers:
@@ -71,13 +112,17 @@ The Serverless Functions documentation (first non-SDK source) reveals the core c
 
 ## Knowledge Gaps
 
-- File Store, ZCQL, NoSQL, Cache, Search, Mail, Push Notifications SDK operations not yet ingested
-- ~~Serverless (Functions, Cron) SDK operations not yet covered~~ — Help docs ingested; SDK API reference still needed
-- Zia Services, Pipelines, QuickML, Connectors not yet covered
-- ~~SmartBrowz not yet covered~~ — Covered via Browser Logic Functions
+- ~~File Store, ZCQL, Cache, Search, Mail, Push Notifications SDK operations not yet ingested~~ — DONE
+- ~~Serverless (Functions, Cron) SDK operations not yet covered~~ — DONE
+- ~~Security Rules, API Gateway, Circuits details not yet documented~~ — Circuits SDK DONE; Security Rules and API Gateway still pending
+- ~~Zia Services, Pipelines, QuickML, Connectors not yet covered~~ — ALL DONE
+- ~~SmartBrowz not yet covered~~ — DONE (Browser Grid + PDF/Screenshot)
+- ~~Job Scheduling SDK operations not yet covered~~ — DONE (15 pages)
+- NoSQL SDK pages consistently failed to load — may not be available in Java SDK v1
 - Node.js SDK and other language SDKs not yet covered
 - Platform pricing, limits, and deployment mechanics unknown
 - Roles and permissions deep-dive needed (how RoleId maps to scopes)
-- Security Rules, API Gateway, Circuits details not yet documented
 - Function memory limits and cold start characteristics unknown
 - Integration Functions data center expansion plans unknown
+- Security Rules and API Gateway details not yet documented
+- Connectors vs Connections SDK disambiguation needs deeper analysis

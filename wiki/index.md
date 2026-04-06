@@ -2,7 +2,7 @@
 title: Wiki Index
 type: index
 created: 2026-04-05
-updated: 2025-07-10
+updated: 2026-04-06
 ---
 
 # Wiki Index
@@ -15,9 +15,13 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[catalyst-java-sdk-data-store]] — All 10 Data Store SDK operations: table/column meta, CRUD rows, pagination, bulk read/write/delete (ingested 2026-04-05)
 - [[catalyst-java-sdk-stratus]] — All 17 Stratus SDK sub-pages: bucket ops, object upload/download, multipart, transfer manager, presigned URLs, versioning (ingested 2026-04-05)
 - [[catalyst-serverless-functions]] — Help documentation for all 7 serverless function types: Basic I/O, Advanced I/O, Event, Cron, Browser Logic, Integration, Job (ingested 2025-07-10)
+- [[catalyst-java-sdk-cloud-scale-remaining]] — 21 SDK pages: File Store, ZCQL, Cache, Connections, Search, Mail, Push Notifications, Functions, Circuits, AppSail (ingested 2026-04-06)
+- [[catalyst-java-sdk-zia-services]] — 15 Zia Services SDK pages: OCR, AutoML, Face Analytics, Identity Scanner (5), Text Analytics (4), Image Moderation, Object Recognition, Barcode Scanner (ingested 2026-04-06)
+- [[catalyst-java-sdk-smartbrowz]] — 7 SmartBrowz SDK pages: Browser Grid (6) + PDF & Screenshot (1) (ingested 2026-04-06)
+- [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]] — 20 SDK pages: Job Scheduling (15), Pipelines (3), QuickML (1), Connectors (1) (ingested 2026-04-06)
 
 ## Entities
-- [[zoho-catalyst]] — Zoho's serverless BaaS platform (5 sources)
+- [[zoho-catalyst]] — Zoho's serverless BaaS platform (9 sources)
 - [[zcproject]] — Base class of the Catalyst Java SDK (1 source)
 - [[zcuser]] — Central class for all authentication/user operations (2 sources)
 - [[zcsignupdata]] — Data holder for user registration and password reset (1 source)
@@ -26,7 +30,12 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[zcstratus]] — Stratus component entry point class (1 source)
 - [[zcbucket]] — Bucket class for upload/download/delete/presigned URL operations (1 source)
 - [[zcobject-stratus]] — Stratus object class for versions, details, metadata (1 source)
-- [[smartbrowz]] — Browser automation service powering Browser Logic Functions (1 source)
+- [[smartbrowz]] — Browser automation service powering Browser Logic Functions (2 sources)
+- [[zcfile]] — File Store entry point class (1 source)
+- [[zcfolder]] — Folder class for file upload/download/delete (1 source)
+- [[zccache]] — Cache entry point class (1 source)
+- [[zcsegment]] — Cache segment class for key-value CRUD (1 source)
+- [[zcml]] — Unified entry point for all Zia AI/ML services (1 source)
 
 ## Concepts
 - [[sdk-scopes]] — Admin vs User access control levels in the SDK (1 source)
@@ -55,6 +64,24 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[job-functions]] — Background tasks via Job Scheduling pools (1 source)
 - [[function-urls]] — URL patterns and accessibility across function types (1 source)
 - [[catalyst-config]] — Universal function configuration file (1 source)
+- [[file-store]] — Original cloud-scale file storage, predecessor to Stratus (1 source)
+- [[zcql]] — Catalyst query language for Data Store operations (1 source)
+- [[cache]] — In-memory key-value cache organized in segments (1 source)
+- [[connections-sdk]] — OAuth token management for Zoho service integrations (1 source)
+- [[catalyst-search]] — Pattern-based search across indexed Data Store columns (1 source)
+- [[catalyst-mail]] — Email sending from Catalyst applications (1 source)
+- [[push-notifications]] — Web and mobile push notification delivery (1 source)
+- [[circuits]] — Workflow orchestration for sequential/concurrent function execution (1 source)
+- [[appsail]] — Managed platform for persistent web service deployment (1 source)
+- [[zia-services]] — AI/ML suite: vision, NLP, identity, custom ML via ZCML (1 source)
+- [[identity-scanner]] — E-KYC + Document Processing for identity verification (1 source)
+- [[text-analytics]] — NLP: Sentiment Analysis, NER, Keyword Extraction (1 source)
+- [[browser-grid]] — Headless browser auto-scaling management via SmartBrowz (1 source)
+- [[pdf-screenshot]] — Visual document generation from HTML/URL/templates (1 source)
+- [[job-scheduling-sdk]] — Job Pool + Jobs + Cron scheduling and management (1 source)
+- [[catalyst-pipelines]] — CI/CD pipeline execution for app deployment (1 source)
+- [[quickml]] — No-code ML model endpoint prediction (1 source)
+- [[connectors-external]] — External Zoho service OAuth token management (1 source)
 
 ## Comparisons
 _No comparisons yet._

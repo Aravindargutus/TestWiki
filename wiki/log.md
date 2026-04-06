@@ -31,3 +31,18 @@ Cross-source synthesis from all 3 source pages + [[instance-objects]], [[sdk-sco
 
 ## [2025-07-10] ingest | Catalyst Serverless Functions Help Documentation
 Ingested 9 sub-pages from https://docs.catalyst.zoho.com/en/serverless/help/functions/ covering all 7 function types (Basic I/O, Advanced I/O, Event, Cron, Browser Logic, Integration, Job). First non-SDK (help doc) source. Pages created: [[catalyst-serverless-functions]], [[smartbrowz]], [[serverless-functions]], [[basic-io-functions]], [[advanced-io-functions]], [[event-functions]], [[cron-functions]], [[browser-logic-functions]], [[integration-functions]], [[job-functions]], [[function-urls]], [[catalyst-config]]. Updated: [[zoho-catalyst]], [[index]], [[overview]], [[log]].
+
+## [2026-04-06] ingest | Catalyst Java SDK — Cloud Scale Remaining + Serverless + General
+Ingested 21 SDK operation pages covering General (1), Functions (1), Circuits (1), AppSail (1), File Store (5), ZCQL (1), Connections (2), Cache (5), Search (1), Mail (1), Push Notifications (2). Pages created: [[catalyst-java-sdk-cloud-scale-remaining]], [[zcfile]], [[zcfolder]], [[zccache]], [[zcsegment]], [[file-store]], [[zcql]], [[cache]], [[connections-sdk]], [[catalyst-search]], [[catalyst-mail]], [[push-notifications]], [[circuits]], [[appsail]]. Updated: [[zoho-catalyst]], [[index]], [[overview]], [[log]].
+
+## [2026-04-06] ingest | Catalyst Java SDK — Zia Services
+Ingested all 15 Zia Services SDK pages: OCR, AutoML, Face Analytics, Identity Scanner (Facial Comparison, Aadhaar, PAN, Passbook, Cheque), Text Analytics (Sentiment, NER, Keyword Extraction, All), Image Moderation, Object Recognition, Barcode Scanner. Pages created: [[catalyst-java-sdk-zia-services]], [[zcml]], [[zia-services]], [[identity-scanner]], [[text-analytics]]. Updated: [[zoho-catalyst]], [[index]], [[overview]], [[log]].
+
+## [2026-04-06] ingest | Catalyst Java SDK — SmartBrowz
+Ingested all 7 SmartBrowz SDK pages: Browser Grid (Overview, Get Instance, Get All, Get Specific, Get Node, Stop) + PDF & Screenshot. Pages created: [[catalyst-java-sdk-smartbrowz]], [[browser-grid]], [[pdf-screenshot]]. Updated: [[smartbrowz]], [[zoho-catalyst]], [[index]], [[overview]], [[log]].
+
+## [2026-04-06] ingest | Catalyst Java SDK — Job Scheduling + Pipelines + QuickML + Connectors
+Ingested 20 SDK pages completing the entire Java SDK v1: Job Scheduling (15: Overview, Init, Job Pool 2, Jobs 3, Cron 10), Pipelines (3), QuickML (1), Connectors (1). Pages created: [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]], [[job-scheduling-sdk]], [[catalyst-pipelines]], [[quickml]], [[connectors-external]]. Updated: [[zoho-catalyst]], [[index]], [[overview]], [[log]].
+
+## [2026-04-06] milestone | Complete Java SDK v1 Coverage
+All 106 pages of the Catalyst Java SDK v1 documentation have been ingested across 9 source documents. 10 raw sources, 9 wiki source pages, 15 entity pages, 42 concept pages. Full coverage: General, Serverless, Cloud Scale (Auth, Data Store, Stratus, File Store, ZCQL, Cache, Connections, Search, Mail, Push Notifications), Zia Services (OCR, AutoML, Face Analytics, Identity Scanner, Text Analytics, Image/Object/Barcode), SmartBrowz (Browser Grid, PDF/Screenshot), Job Scheduling (Job Pool, Jobs, Cron), Pipelines, QuickML, Connectors.
