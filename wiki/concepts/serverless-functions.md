@@ -25,7 +25,7 @@ Serverless Functions are the core compute units of the [[zoho-catalyst]] platfor
 7. **[[job-functions]]** — Background tasks via Job Scheduling pools
 
 ### Runtime Support
-- **Java**: 8, 11, 17 (Job Functions also support Java 7)
+- **Java**: 8, 11, 17 
 - **Node.js**: 20, 18, 16, 14, 12 (12 is EOL)
 - **Python**: 3.9 only (not supported for Browser Logic)
 
