@@ -11,6 +11,9 @@ Chronological record of all wiki operations.
 ## [2026-04-05] init | Wiki initialized
 Created directory structure, schema, index, overview, and templates. Ready for first source ingest.
 
+## [2026-04-07] ingest | Catalyst Node.js SDK v2 — Full Documentation (~131 pages)
+Ingested entire Node.js SDK v2 documentation across 4 source batches: Overview & Serverless (9 pages), Cloud Scale Core (51 pages: Auth, Data Store, NoSQL, Stratus), Cloud Scale Remaining (23 pages: File Store, Cache, Connections, Search, ZCQL, Mail, Push Notifications), Zia/SmartBrowz/Jobs (45 pages: Zia Services, SmartBrowz, Job Scheduling, Pipelines, QuickML, Connectors). Created: 4 raw source files, 4 wiki source pages, 1 entity page ([[zcatalyst-sdk-node]]), 2 concept pages ([[nodejs-sdk-initialization]], [[dataverse]]). Updated: [[zoho-catalyst]] entity (14 sources), [[index.md]].
+
 ## [2026-04-05] ingest | Catalyst Java SDK Overview
 Ingested from https://docs.catalyst.zoho.com/en/sdk/java/v1/overview/ (plus upgrade and third-party integration pages). Pages created: [[catalyst-java-sdk-overview]], [[zoho-catalyst]], [[zcproject]], [[sdk-scopes]], [[instance-objects]], [[class-hierarchy]], [[third-party-sdk-integration]]. Updated: [[index]], [[overview]].
 

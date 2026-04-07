@@ -20,6 +20,10 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[catalyst-java-sdk-smartbrowz]] — 7 SmartBrowz SDK pages: Browser Grid (6) + PDF & Screenshot (1) (ingested 2026-04-06)
 - [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]] — 20 SDK pages: Job Scheduling (15), Pipelines (3), QuickML (1), Connectors (1) (ingested 2026-04-06)
 - [[catalyst-java-sdk-nosql-security-apigateway]] — 18 pages: NoSQL SDK (10), Security Rules (3), API Gateway (5) — fills remaining Java SDK gaps (ingested 2026-04-07)
+- [[catalyst-nodejs-sdk-overview-serverless]] — Node.js SDK v2: Overview, upgrade, third-party integration, serverless (Functions, Circuits, AppSail) (ingested 2026-04-07)
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK v2: Authentication (11), Data Store (11), NoSQL (10), Stratus (19) (ingested 2026-04-07)
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js SDK v2: File Store, Cache, Connections, Search, ZCQL, Mail, Push Notifications (23 pages) (ingested 2026-04-07)
+- [[catalyst-nodejs-sdk-zia-smartbrowz-jobs]] — Node.js SDK v2: Zia (14), SmartBrowz (9), Job Scheduling (17), Pipelines (3), QuickML (1), Connectors (1) (ingested 2026-04-07)
 
 ## Entities
 - [[zoho-catalyst]] — Zoho's serverless BaaS platform (9 sources)
@@ -38,6 +42,7 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[zcsegment]] — Cache segment class for key-value CRUD (1 source)
 - [[zcml]] — Unified entry point for all Zia AI/ML services (1 source)
 - [[zcnosql]] — Entry point class for all NoSQL operations (1 source)
+- [[zcatalyst-sdk-node]] — Node.js SDK v2 npm package (`zcatalyst-sdk-node`) with ~131 pages of documentation (4 sources)
 
 ## Concepts
 - [[sdk-scopes]] — Admin vs User access control levels in the SDK (1 source)
@@ -84,6 +89,8 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[catalyst-pipelines]] — CI/CD pipeline execution for app deployment (1 source)
 - [[quickml]] — No-code ML model endpoint prediction (1 source)
 - [[connectors-external]] — External Zoho service OAuth token management (1 source)
+- [[nodejs-sdk-initialization]] — Promise-based initialization patterns for Node.js SDK v2 (1 source)
+- [[dataverse]] — SmartBrowz web data extraction: Lead Enrichment, Tech Stack Finder, Similar Companies (1 source)
 - [[nosql]] — Non-relational document-type database with key-value JSON storage (1 source)
 - [[security-rules]] — Default JSON-based access control for serverless functions (1 source)
 - [[api-gateway]] — Advanced API management with routing, API Key auth, and throttling (1 source)

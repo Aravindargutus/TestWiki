@@ -2,17 +2,23 @@
 title: Overview
 type: overview
 created: 2026-04-05
-updated: 2026-04-06
-sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md]
+updated: 2026-04-07
+sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-nodejs-sdk-overview-serverless.md, catalyst-nodejs-sdk-cloud-scale-core.md, catalyst-nodejs-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
 ---
 
 # Overview
 
 This wiki covers the **Zoho Catalyst** platform — a serverless Backend-as-a-Service (BaaS) by Zoho Corporation.
 
-## Current Focus: Java SDK
+## Current Coverage
 
-**All areas of the Catalyst Java SDK v1 have been fully ingested (106 pages across 9 sources):**
+**Two complete SDK ingests:**
+- **Java SDK v1**: 124 pages across 10 sources — class-based, synchronous API
+- **Node.js SDK v2**: ~131 pages across 4 sources — promise-based, async/await API
+
+Both SDKs cover the same Catalyst components with language-appropriate patterns.
+
+## Java SDK
 
 ### SDK Architecture
 The SDK wraps Catalyst REST APIs into a Java class hierarchy rooted at `ZCProject`, supporting Java 8, 11, and 17. Key architectural concepts include:
@@ -89,6 +95,29 @@ The ninth ingest completes the SDK with **20 pages** across 4 remaining componen
 - **QuickML** (1 op): Predict via published ML endpoint key. **Not available in JP, SA, CA**.
 - **Connectors** (external): OAuth token management for Zoho services. Stores tokens in Cache. Different from Connections SDK (internal).
 
+## Node.js SDK v2
+
+**~131 pages ingested across 4 sources.** The Node.js SDK (`zcatalyst-sdk-node` v2.5.0) covers the same components as the Java SDK but with promise-based APIs:
+
+### Key Differences from Java SDK
+- **Initialization**: `catalyst.initialize(req)` returns an `app` object (vs Java's `ZCProject`)
+- **API style**: Promises (`.then()` / `async/await`) vs Java's synchronous beans
+- **Scopes**: Same Admin/User model, applies to Data Store, File Store, ZCQL only
+- **Package**: npm (`zcatalyst-sdk-node`) vs Java SDK JAR
+
+### Component Coverage
+All 19 component instances accessible from the app object:
+- **Serverless**: `app.functions()`, `app.circuit()`
+- **Cloud Scale**: `app.userManagement()`, `app.datastore()`, `app.nosql()`, `app.stratus()`, `app.filestore()`, `app.cache()`, `app.connections()`, `app.search()`, `app.zcql()`, `app.email()`, `app.pushNotification()`
+- **Zia**: `app.zia()` (OCR, AutoML, Face Analytics, Identity Scanner, Text Analytics, Image Moderation, Object Recognition, Barcode)
+- **SmartBrowz**: `app.smartbrowz()` (Browser Grid, PDF/Screenshot, Dataverse)
+- **Job Scheduling**: `app.jobScheduling()` (Job Pool, Jobs, Cron)
+- **Other**: `app.pipeline()`, `app.quickML()`, `app.connection({...})`
+
+### Unique to Node.js SDK
+- **Dataverse** (SmartBrowz): Lead Enrichment, Tech Stack Finder, Similar Companies — web scraping intelligence
+- **Named app caching**: `catalyst.initialize(req, { appName: 'name' })` → `catalyst.app('name')`
+
 ## Serverless Functions (Help Documentation)
 
 The Serverless Functions documentation (first non-SDK source) reveals the core compute layer of Catalyst. There are **7 distinct function types** organized into two execution tiers:
@@ -119,7 +148,7 @@ The Serverless Functions documentation (first non-SDK source) reveals the core c
 - ~~SmartBrowz not yet covered~~ — DONE (Browser Grid + PDF/Screenshot)
 - ~~Job Scheduling SDK operations not yet covered~~ — DONE (15 pages)
 - ~~NoSQL SDK pages consistently failed to load~~ — DONE (10 pages via docs-ea.catalyst.zoho.com/en/sdk/java/v1/)
-- Node.js SDK and other language SDKs not yet covered
+- ~~Node.js SDK and other language SDKs not yet covered~~ — Node.js SDK v2 DONE (~131 pages)
 - Platform pricing, limits, and deployment mechanics unknown
 - Roles and permissions deep-dive needed (how RoleId maps to scopes)
 - Function memory limits and cold start characteristics unknown

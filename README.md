@@ -1,8 +1,8 @@
 # catalyst-sdk.wiki
 
-An implementation of the [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) pattern (Karpathy, 2026) applied to the **Zoho Catalyst Java SDK v1**.
+An implementation of the [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) pattern (Karpathy, 2026) applied to the **Zoho Catalyst SDK** — both Java v1 and Node.js v2.
 
-106 pages of SDK documentation → a persistent, interlinked knowledge base that an LLM builds, maintains, and queries. No RAG. No embeddings. Just markdown files, wikilinks, and a schema that tells the LLM how to be a disciplined wiki maintainer.
+~255 pages of SDK documentation → a persistent, interlinked knowledge base that an LLM builds, maintains, and queries. No RAG. No embeddings. Just markdown files, wikilinks, and a schema that tells the LLM how to be a disciplined wiki maintainer.
 
 ## the idea
 
@@ -20,17 +20,18 @@ Three layers, following the pattern:
 
 ```
 raw/                        # layer 1: immutable source documents (LLM reads, never writes)
-├── catalyst-java-sdk-*.md  #   8 SDK doc bundles scraped from official docs
+├── catalyst-java-sdk-*.md  #   10 Java SDK doc bundles
+├── catalyst-nodejs-sdk-*.md #  4 Node.js SDK doc bundles
 ├── catalyst-serverless-functions.md
 └── assets/                 #   images, PDFs, data files
 
 wiki/                       # layer 2: LLM-maintained knowledge base (LLM owns this)
 ├── index.md                #   master catalog — LLM reads this first on every query
-├── overview.md             #   high-level synthesis across all 9 sources
+├── overview.md             #   high-level synthesis across all 14 sources
 ├── log.md                  #   chronological record of every operation
-├── sources/                #   one summary per ingested source (9 pages)
-├── entities/               #   classes, products, services (15 pages)
-├── concepts/               #   ideas, patterns, frameworks (42 pages)
+├── sources/                #   one summary per ingested source (14 pages)
+├── entities/               #   classes, products, services (17 pages)
+├── concepts/               #   ideas, patterns, frameworks (47 pages)
 ├── comparisons/            #   side-by-side analyses
 └── analyses/               #   query-derived pages filed back into the wiki
 
@@ -77,7 +78,7 @@ git clone https://github.com/Aravindargutus/TestWiki.git
 cd TestWiki
 ```
 
-Point your LLM agent at `AGENTS.md` (the schema). The agent reads `wiki/index.md` first, then drills into relevant pages. This works well at this scale (~66 wiki pages) without any embedding infrastructure.
+Point your LLM agent at `AGENTS.md` (the schema). The agent reads `wiki/index.md` first, then drills into relevant pages. This works well at this scale (~78 wiki pages) without any embedding infrastructure.
 
 **Example queries:**
 - *"How do I initialize the SDK with Client ID and Client Secret?"* → reads `wiki/concepts/third-party-sdk-integration.md`
@@ -91,8 +92,9 @@ Point your LLM agent at `AGENTS.md` (the schema). The agent reads `wiki/index.md
 
 ## key entities
 
-The SDK's class hierarchy, mirrored as entity pages in the wiki:
+The SDK class hierarchies, mirrored as entity pages in the wiki:
 
+**Java SDK v1:**
 ```
 ZCProject                                  # root of everything
 ├── ZCUser + ZCSignUpData                  # authentication (11 ops)
@@ -100,7 +102,22 @@ ZCProject                                  # root of everything
 ├── ZCStratus → ZCBucket → ZCObject        # object storage (17 ops)
 ├── ZCFile → ZCFolder                      # file store (5 ops)
 ├── ZCCache → ZCSegment                    # cache (5 ops)
-└── ZCML                                   # all Zia AI/ML services
+├── ZCML                                   # all Zia AI/ML services
+└── ZCNoSQL                                # NoSQL document storage
+```
+
+**Node.js SDK v2:**
+```
+catalyst.initialize(req) → app             # root of everything
+├── app.userManagement()                   # authentication (11 ops)
+├── app.datastore().table()                # data store (11 ops)
+├── app.nosql().table()                    # NoSQL (10 ops)
+├── app.stratus().bucket().object()        # object storage (19 ops)
+├── app.filestore().folder()               # file store (6 ops)
+├── app.cache().segment()                  # cache (6 ops)
+├── app.zia()                              # all Zia AI/ML services
+├── app.smartbrowz()                       # browser automation + Dataverse
+└── app.jobScheduling()                    # jobs, crons, pools
 ```
 
 ## data center restrictions
@@ -127,18 +144,17 @@ Every wiki page follows these rules (enforced by the schema):
 
 ## known gaps
 
-- NoSQL SDK pages failed to load — may not exist in Java SDK v1
-- Node.js SDK and other language SDKs not yet covered
-- Security Rules and API Gateway not yet documented
+- Python, Web, Android, iOS, Flutter SDKs not yet covered
 - Platform pricing, limits, and deployment mechanics unknown
 - Roles ↔ scopes mapping needs deeper analysis
 - Connectors vs Connections SDK disambiguation incomplete
+- Function memory limits and cold start characteristics unknown
 
 These are tracked in `wiki/overview.md` under Knowledge Gaps. The lint operation can suggest which gaps to prioritize.
 
 ## why this works
 
-The Catalyst Java SDK has 106 documentation pages across a dozen components. Asking an LLM to answer questions against that corpus via RAG means the LLM re-discovers the relevant pages every time. It doesn't know that Stratus replaced File Store. It doesn't know that Circuits and Integration Functions share the same data center restrictions. It doesn't know that `getInstance()` is a design pattern used across every component.
+The Catalyst SDKs have ~255 documentation pages across two languages covering a dozen components. Asking an LLM to answer questions against that corpus via RAG means the LLM re-discovers the relevant pages every time. It doesn't know that Stratus replaced File Store. It doesn't know that Circuits and Integration Functions share the same data center restrictions. It doesn't know that the Java SDK uses `getInstance()` while the Node.js SDK uses promise chains for the same operations.
 
 The wiki knows all of this. It was compiled once, incrementally, as each source was ingested. The LLM connected the dots as it went — and those connections persist for every future query.
 

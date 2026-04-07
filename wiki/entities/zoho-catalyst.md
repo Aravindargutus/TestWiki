@@ -3,7 +3,7 @@ title: Zoho Catalyst
 type: entity
 created: 2026-04-05
 updated: 2026-04-06
-sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-java-sdk-nosql-security-apigateway.md]
+sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-java-sdk-nosql-security-apigateway.md, catalyst-nodejs-sdk-overview-serverless.md, catalyst-nodejs-sdk-cloud-scale-core.md, catalyst-nodejs-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
 tags: [zoho, catalyst, serverless, baas, platform]
 ---
 
@@ -15,8 +15,9 @@ Zoho Catalyst is a serverless Backend-as-a-Service (BaaS) platform by Zoho Corpo
 
 ## Key Facts
 
-- Provides SDKs for Java (also Node.js and others)
+- Provides SDKs for Java (v1), Node.js (v2), Python (v1), Web (v4), Android (v2), iOS (v2), Flutter (v2)
 - Java SDK supports Java 8, 11, 17
+- Node.js SDK package: `zcatalyst-sdk-node` (current: 2.5.0)
 - Console at: console.catalyst.zoho.com
 - API domain: api.catalyst.zoho.com
 - Supports development and production environments
@@ -48,12 +49,19 @@ The platform provides these major component categories:
 - [[catalyst-java-sdk-smartbrowz]] — All 7 SmartBrowz SDK ops: Browser Grid (6) + PDF & Screenshot (1)
 - [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]] — 20 SDK pages: Job Scheduling (15), Pipelines (3), QuickML (1), Connectors (1)
 - [[catalyst-java-sdk-nosql-security-apigateway]] — 18 pages filling remaining gaps: NoSQL SDK (10), Security Rules (3), API Gateway (5)
+- [[catalyst-nodejs-sdk-overview-serverless]] — Node.js SDK v2: Overview, upgrade, third-party integration, serverless operations
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK v2: Authentication (11), Data Store (11), NoSQL (10), Stratus (19)
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js SDK v2: File Store, Cache, Connections, Search, ZCQL, Mail, Push Notifications
+- [[catalyst-nodejs-sdk-zia-smartbrowz-jobs]] — Node.js SDK v2: Zia (14), SmartBrowz (9), Job Scheduling (17), Pipelines (3), QuickML (1), Connectors (1)
 
 ## Relationships
 
 - Part of [[zoho-corporation]] ecosystem
-- SDK base class: [[zcproject]]
+- Java SDK base class: [[zcproject]]
+- Node.js SDK package: [[zcatalyst-sdk-node]]
 
 ## Notes
 
-- The Java SDK can be used both inside Catalyst-hosted functions (auto-initialized) and in external third-party applications via OAuth.
+- Both Java and Node.js SDKs can be used inside Catalyst-hosted functions (auto-initialized) and in external third-party applications via OAuth.
+- Node.js SDK uses promise-based API (`async/await` or `.then()`) vs Java SDK's synchronous bean pattern.
+- Node.js SDK v2 covers ~131 pages across 9 sections, comparable to Java SDK v1's ~124 pages.
