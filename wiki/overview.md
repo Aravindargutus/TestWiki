@@ -118,11 +118,11 @@ The Serverless Functions documentation (first non-SDK source) reveals the core c
 - ~~Zia Services, Pipelines, QuickML, Connectors not yet covered~~ — ALL DONE
 - ~~SmartBrowz not yet covered~~ — DONE (Browser Grid + PDF/Screenshot)
 - ~~Job Scheduling SDK operations not yet covered~~ — DONE (15 pages)
-- NoSQL SDK pages consistently failed to load — may not be available in Java SDK v1
+- ~~NoSQL SDK pages consistently failed to load~~ — DONE (10 pages via docs-ea.catalyst.zoho.com/en/sdk/java/v1/)
 - Node.js SDK and other language SDKs not yet covered
 - Platform pricing, limits, and deployment mechanics unknown
 - Roles and permissions deep-dive needed (how RoleId maps to scopes)
 - Function memory limits and cold start characteristics unknown
 - Integration Functions data center expansion plans unknown
-- Security Rules and API Gateway details not yet documented
+- ~~Security Rules and API Gateway details not yet documented~~ — DONE (Security Rules 3 pages, API Gateway 5 pages)
 - Connectors vs Connections SDK disambiguation needs deeper analysis

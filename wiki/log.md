@@ -46,3 +46,6 @@ Ingested 20 SDK pages completing the entire Java SDK v1: Job Scheduling (15: Ove
 
 ## [2026-04-06] milestone | Complete Java SDK v1 Coverage
 All 106 pages of the Catalyst Java SDK v1 documentation have been ingested across 9 source documents. 10 raw sources, 9 wiki source pages, 15 entity pages, 42 concept pages. Full coverage: General, Serverless, Cloud Scale (Auth, Data Store, Stratus, File Store, ZCQL, Cache, Connections, Search, Mail, Push Notifications), Zia Services (OCR, AutoML, Face Analytics, Identity Scanner, Text Analytics, Image/Object/Barcode), SmartBrowz (Browser Grid, PDF/Screenshot), Job Scheduling (Job Pool, Jobs, Cron), Pipelines, QuickML, Connectors.
+
+## [2026-04-07] ingest | Catalyst Java SDK — NoSQL, Security Rules & API Gateway
+Ingested 18 pages filling remaining Java SDK gaps: NoSQL (10 SDK pages via docs-ea.catalyst.zoho.com), Security Rules (3 help pages), API Gateway (5 help pages). NoSQL was previously flagged as "failed to load" — resolved by using the v1-pathed URL. Pages created: [[catalyst-java-sdk-nosql-security-apigateway]], [[zcnosql]], [[nosql]], [[security-rules]], [[api-gateway]]. Updated: [[zoho-catalyst]], [[index]], [[overview]], [[log]].

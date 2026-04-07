@@ -19,6 +19,7 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[catalyst-java-sdk-zia-services]] — 15 Zia Services SDK pages: OCR, AutoML, Face Analytics, Identity Scanner (5), Text Analytics (4), Image Moderation, Object Recognition, Barcode Scanner (ingested 2026-04-06)
 - [[catalyst-java-sdk-smartbrowz]] — 7 SmartBrowz SDK pages: Browser Grid (6) + PDF & Screenshot (1) (ingested 2026-04-06)
 - [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]] — 20 SDK pages: Job Scheduling (15), Pipelines (3), QuickML (1), Connectors (1) (ingested 2026-04-06)
+- [[catalyst-java-sdk-nosql-security-apigateway]] — 18 pages: NoSQL SDK (10), Security Rules (3), API Gateway (5) — fills remaining Java SDK gaps (ingested 2026-04-07)
 
 ## Entities
 - [[zoho-catalyst]] — Zoho's serverless BaaS platform (9 sources)
@@ -36,6 +37,7 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[zccache]] — Cache entry point class (1 source)
 - [[zcsegment]] — Cache segment class for key-value CRUD (1 source)
 - [[zcml]] — Unified entry point for all Zia AI/ML services (1 source)
+- [[zcnosql]] — Entry point class for all NoSQL operations (1 source)
 
 ## Concepts
 - [[sdk-scopes]] — Admin vs User access control levels in the SDK (1 source)
@@ -82,6 +84,9 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[catalyst-pipelines]] — CI/CD pipeline execution for app deployment (1 source)
 - [[quickml]] — No-code ML model endpoint prediction (1 source)
 - [[connectors-external]] — External Zoho service OAuth token management (1 source)
+- [[nosql]] — Non-relational document-type database with key-value JSON storage (1 source)
+- [[security-rules]] — Default JSON-based access control for serverless functions (1 source)
+- [[api-gateway]] — Advanced API management with routing, API Key auth, and throttling (1 source)
 
 ## Comparisons
 _No comparisons yet._

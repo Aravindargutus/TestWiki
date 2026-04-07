@@ -3,7 +3,7 @@ title: Zoho Catalyst
 type: entity
 created: 2026-04-05
 updated: 2026-04-06
-sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md]
+sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-java-sdk-nosql-security-apigateway.md]
 tags: [zoho, catalyst, serverless, baas, platform]
 ---
 
@@ -27,7 +27,8 @@ Zoho Catalyst is a serverless Backend-as-a-Service (BaaS) platform by Zoho Corpo
 The platform provides these major component categories:
 - **General** — Project-level operations
 - **Serverless** — Functions, cron jobs
-- **Cloud Scale** — [[data-store]], [[file-store]], [[zcql]], [[stratus]], Authentication
+- **Cloud Scale** — [[data-store]], [[nosql]], [[file-store]], [[zcql]], [[stratus]], Authentication, [[cache]], [[catalyst-search]], [[catalyst-mail]], [[push-notifications]], [[connections-sdk]]
+- **Security & Identity** — [[security-rules]], [[api-gateway]]
 - **Zia Services** — AI/ML capabilities
 - **SmartBrowz** — Browser automation
 - **Job Scheduling** — Scheduled tasks
@@ -46,6 +47,7 @@ The platform provides these major component categories:
 - [[catalyst-java-sdk-zia-services]] — All 15 Zia Services SDK ops: OCR, AutoML, Face Analytics, Identity Scanner (5), Text Analytics (4), Image Moderation, Object Recognition, Barcode Scanner
 - [[catalyst-java-sdk-smartbrowz]] — All 7 SmartBrowz SDK ops: Browser Grid (6) + PDF & Screenshot (1)
 - [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]] — 20 SDK pages: Job Scheduling (15), Pipelines (3), QuickML (1), Connectors (1)
+- [[catalyst-java-sdk-nosql-security-apigateway]] — 18 pages filling remaining gaps: NoSQL SDK (10), Security Rules (3), API Gateway (5)
 
 ## Relationships
 
