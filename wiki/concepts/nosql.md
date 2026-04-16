@@ -2,8 +2,8 @@
 title: NoSQL
 type: concept
 created: 2026-04-07
-updated: 2026-04-07
-sources: [catalyst-java-sdk-nosql-security-apigateway.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-nosql-security-apigateway.md, catalyst-nodejs-sdk-cloud-scale-core.md]
 tags: [catalyst, nosql, cloud-scale, database, storage]
 ---
 
@@ -36,9 +36,38 @@ Catalyst Cloud Scale NoSQL is a fully managed, non-relational database that supp
 | Best for | Read-heavy, consistent schema | Write-heavy, flexible schema |
 | Identifier | ROWID | Partition key + optional sort key |
 
+## Node.js SDK Access Pattern
+
+Promise-based API via `app.nosql()`. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+```js
+const nosql = app.nosql();
+const table = nosql.table('MyTable');
+
+// Build items
+const item = nosql.item();
+item.put('pk', 'partition_value');
+item.put('sk', 'sort_value');
+item.put('name', 'John');
+item.put('age', 30);
+
+// CRUD
+await table.insertItems([item]);
+await table.updateItems([updatedItem]);
+const result = await table.fetchItems({ partition_key_value: 'pk', sort_key_value: 'sk' });
+await table.deleteItems([{ partition_key_value: 'pk', sort_key_value: 'sk' }]);
+
+// Query
+const rows = await table.queryTable({ partition_key: { value: 'pk' }, sort_key: { value: 'sk', condition: 'BEGINS_WITH' } });
+const indexed = await table.queryIndex('IndexName', { partition_key: { value: 'pk' } });
+```
+
+**Key differences**: Java uses a fluent builder with typed methods (`withString`, `withNumber`, etc.), while Node.js `item.put()` infers types dynamically. Java supports 14 conditional operators with group conditions; Node.js uses JSON condition objects.
+
 ## Sources
 
 - [[catalyst-java-sdk-nosql-security-apigateway]] — All 10 NoSQL SDK pages
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js NoSQL SDK (10 pages)
 
 ## Related Concepts
 
@@ -48,4 +77,4 @@ Catalyst Cloud Scale NoSQL is a fully managed, non-relational database that supp
 
 ## Evolution
 
-_Previously flagged as "failed to load" — resolved by using the `docs-ea.catalyst.zoho.com` domain with explicit `/v1/` path. NoSQL is fully available in Java SDK v1._
+_Initially flagged as "failed to load" in Java SDK. Resolved via `docs-ea.catalyst.zoho.com`. Node.js SDK v2 provides matching 10-page coverage with simplified item construction via `nosql.item().put()`._

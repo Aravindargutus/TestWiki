@@ -2,8 +2,8 @@
 title: Connections SDK
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, connections, oauth, zoho-services]
 ---
 
@@ -30,9 +30,22 @@ Map headers = response.getHeaders();
 Map params = response.getParameters();
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+const connections = app.connections();
+const credential = await connections.getConnector('ConnectorName');
+const token = await credential.getAccessToken();
+```
+
+Same restriction: Only within Functions and AppSail, not third-party apps. [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
+**Key difference**: Java returns `ZCConnectionResponse` with `getHeaders()` and `getParameters()`. Node.js returns a credential object with `getAccessToken()`.
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js Connections (2 pages)
 
 ## Related Concepts
 

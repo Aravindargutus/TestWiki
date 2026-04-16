@@ -2,8 +2,8 @@
 title: Stratus
 type: concept
 created: 2026-04-05
-updated: 2026-04-05
-sources: [catalyst-java-sdk-stratus.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-stratus.md, catalyst-nodejs-sdk-cloud-scale-core.md]
 tags: [catalyst, stratus, object-storage, cloud-scale]
 ---
 
@@ -37,9 +37,28 @@ Also: `ZCTransferManager` for large file operations.
 ### Character Restrictions
 The following characters (including space) are NOT supported in paths or object names: `"`, `<`, `>`, `#`, `\`, `|`
 
+## Node.js SDK Access Pattern
+
+Promise-based API via `app.stratus()` → `stratus.bucket('name')` → `bucket.object('key')`. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+```js
+const stratus = app.stratus();
+const bucket = stratus.bucket('my-bucket');
+await bucket.uploadObject('key', fileStream, options);
+const stream = await bucket.downloadObject('key');
+await bucket.deleteObjects(['key1', 'key2']);
+
+const obj = bucket.object('key');
+await obj.putMeta({ tag: 'value' });
+const versions = await obj.listVersions();
+```
+
+**Key differences**: Node.js provides `bucket.checkObjectAvailability()` (vs Java's `headObject()`), explicit `moveObject()` method, and array-based `deleteObjects()`. Java's multipart upload methods are not separately exposed in Node.js. Metadata rules are identical (2047 char max, destructive puts).
+
 ## Sources
 
 - [[catalyst-java-sdk-stratus]] — Complete SDK documentation (17 sub-pages)
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK Stratus (19 pages)
 
 ## Related Concepts
 

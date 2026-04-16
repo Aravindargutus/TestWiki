@@ -2,9 +2,9 @@
 title: ZCBucket
 type: entity
 created: 2026-04-05
-updated: 2026-04-05
-sources: [catalyst-java-sdk-stratus.md]
-tags: [catalyst, java-sdk, stratus, class, bucket]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-stratus.md, catalyst-nodejs-sdk-cloud-scale-core.md]
+tags: [catalyst, java-sdk, nodejs-sdk, stratus, class, bucket]
 ---
 
 # ZCBucket
@@ -72,11 +72,31 @@ tags: [catalyst, java-sdk, stratus, class, bucket]
 | `truncate()` | Admin | JSONObject |
 | `deletePath(path)` | Admin | JSONObject |
 
+### Node.js SDK Equivalent Methods
+
+In Node.js, bucket operations are accessed via `stratus.bucket('name')`. All return promises. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+| Java SDK | Node.js SDK |
+|----------|-------------|
+| `getDetails()` | `bucket.getDetails()` |
+| `getCors()` | `bucket.getCORS()` |
+| `listPagedObjects(options)` | `bucket.listObjects()` |
+| `headObject(key)` | `bucket.checkObjectAvailability('key')` |
+| `getObject(key)` | `bucket.downloadObject('key')` |
+| `putObject(key, stream)` | `bucket.uploadObject('key', stream, options)` |
+| `putZipObject(key, stream, options)` | `bucket.extractObject('archive.zip', 'dest/')` |
+| `copyObject(key, dest)` | `bucket.copyObject('src', 'dest-bucket', 'dest-key')` |
+| `renameObject(key, dest)` | `bucket.renameObject('old', 'new')` |
+| _N/A_ | `bucket.moveObject('src', 'dest-bucket', 'dest-key')` |
+| `deleteObject(key)` | `bucket.deleteObjects(['key1', 'key2'])` |
+| `bucket.getObjectInstance(key)` | `bucket.object('key')` |
+
+**Key differences**: Node.js SDK combines delete into a single `deleteObjects()` accepting an array. Node.js adds explicit `moveObject()`. Java's multipart upload methods are not separately exposed in Node.js (handled internally by `uploadObject`).
+
 ### Presigned URLs
-| Method | Scope | Returns |
-|--------|-------|---------|
-| `generatePreSignedUrl(key, action)` | Admin | JSONObject |
-| `generatePreSignedUrl(key, action, expiry, activeFrom)` | Admin | JSONObject |
+| Java SDK | Node.js SDK |
+|----------|-------------|
+| `generatePreSignedUrl(key, action)` | _Not separately documented in Node.js raw source_ |
 
 ### Factory
 | Method | Scope | Returns |

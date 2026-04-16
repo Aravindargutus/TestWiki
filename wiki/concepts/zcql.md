@@ -2,8 +2,8 @@
 title: ZCQL
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, query-language, data-store, zcql]
 ---
 
@@ -35,9 +35,21 @@ ZCProject userProject = ZCProject.getProject("user");
 ZCQL.getInstance(userProject).executeQuery("SELECT * FROM test");
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+const zcql = app.zcql();
+const result = await zcql.executeZCQLQuery('SELECT * FROM SampleTable WHERE Name = "Amelia"');
+```
+
+Node.js ZCQL also supports DML queries, SQL Join, GroupBy, OrderBy, built-in functions, and OLAP database. [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
+**Key difference**: Java has explicit `isV2` and `isOLAP` boolean parameters. Node.js documentation does not expose these as separate flags.
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js ZCQL (2 pages)
 
 ## Related Concepts
 

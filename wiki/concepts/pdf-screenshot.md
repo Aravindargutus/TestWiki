@@ -2,8 +2,8 @@
 title: PDF & Screenshot
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-smartbrowz.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-smartbrowz.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
 tags: [smartbrowz, pdf, screenshot, document-generation]
 ---
 
@@ -23,9 +23,20 @@ PDF & Screenshot is a [[smartbrowz]] component for programmatically generating v
 - **Returns InputStream**: Caller handles the output stream
 - **Template system**: Templates created in console; data passed as Jackson JsonNode
 
+## Node.js SDK Access Pattern
+
+```js
+const smartbrowz = app.smartbrowz();
+const pdfResult = await smartbrowz.generatePDF(options);
+const screenshotResult = await smartbrowz.generateScreenshot(options);
+```
+
+Node.js SDK provides separate `generatePDF()` and `generateScreenshot()` methods (vs Java's `convertToPdf()` and `generateFromTemplate()`). [Source: catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
+
 ## Sources
 
 - [[catalyst-java-sdk-smartbrowz]]
+- [[catalyst-nodejs-sdk-zia-smartbrowz-jobs]] — Node.js PDF & Screenshot
 
 ## Related Concepts
 

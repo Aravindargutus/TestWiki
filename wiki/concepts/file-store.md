@@ -2,8 +2,8 @@
 title: File Store
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, storage, file-store]
 ---
 
@@ -32,9 +32,23 @@ InputStream is = folder.downloadFile(fileId);
 folder.deleteFile(fileId);
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+const filestore = app.filestore();
+const folder = filestore.folder(folderId);
+await folder.uploadFile({ code: fileStream, name: 'data.csv' });
+const stream = await folder.downloadFile(fileId);
+await folder.deleteFile(fileId);
+const details = await folder.getDetails();
+```
+
+Node.js SDK also notes that Stratus is a "significant upgrade to File Store, available in Early Access." [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js File Store (6 pages)
 
 ## Related Concepts
 

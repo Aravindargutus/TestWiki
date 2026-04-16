@@ -2,8 +2,8 @@
 title: Browser Grid
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-smartbrowz.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-smartbrowz.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
 tags: [smartbrowz, browser-grid, headless, automation]
 ---
 
@@ -21,9 +21,25 @@ Browser Grid is [[smartbrowz]]'s auto-scaling component for configuring and mana
 - **Lookup by ID or name** — consistent pattern across all operations
 - **Stop is destructive**: Terminates all executions and stops the grid
 
+## Node.js SDK Access Pattern
+
+```js
+const smartbrowz = app.smartbrowz();
+const browserGrid = smartbrowz.browserGrid();
+
+await browserGrid.getAllGrids();
+await browserGrid.getGrid(gridId);      // or getGrid('gridName')
+await browserGrid.getNodes(gridId);
+await browserGrid.getNode(gridId, nodeId);
+await browserGrid.stopGrid(gridId);     // or stopGrid('gridName')
+```
+
+All operations require Admin scope. Lookup by ID or name. [Source: catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
+
 ## Sources
 
 - [[catalyst-java-sdk-smartbrowz]]
+- [[catalyst-nodejs-sdk-zia-smartbrowz-jobs]] — Node.js Browser Grid (6 pages)
 
 ## Related Concepts
 

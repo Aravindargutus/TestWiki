@@ -2,8 +2,8 @@
 title: Push Notifications
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, notifications, push, mobile, web]
 ---
 
@@ -41,9 +41,29 @@ mobile.sendAndroidPushNotification(new ZCPush() {{ setMessage("Hello!"); }}, "us
 mobile.sendIOSPushNotification(push, "user@example.com");
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+// Web
+await app.pushNotification().sendWebNotification({
+  message: 'Test!',
+  recipients: [{ recipient_id: userId, target_url: 'https://app.example.com' }]
+});
+
+// Mobile
+const notification = app.pushNotification().mobile('appId');
+await notification.sendAndroidNotification({ message: 'Test!', badge_count: 1 }, 'user@email.com');
+await notification.sendIOSNotification({ message: 'Test!', badge_count: 1 }, 'user@email.com');
+```
+
+Node.js prerequisites: Enable push notifications in web app, user must allow/opt-in. Mobile requires registered app + Catalyst Authentication + platform-specific push config. [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
+**Key difference**: Java uses separate `ZCWebNotification` and `ZCMobileNotification` classes. Node.js unifies under `app.pushNotification()` with `.mobile('appId')` for mobile.
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js Push Notifications (3 pages)
 
 ## Related Concepts
 

@@ -2,8 +2,8 @@
 title: Data Store
 type: concept
 created: 2026-04-05
-updated: 2026-04-05
-sources: [catalyst-java-sdk-data-store.md, catalyst-java-sdk-overview.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-data-store.md, catalyst-java-sdk-overview.md, catalyst-nodejs-sdk-cloud-scale-core.md]
 tags: [catalyst, cloud-scale, database, data-store, relational]
 ---
 
@@ -40,10 +40,34 @@ ZCObject.getInstance()
            └── (bulk via ZCDataStoreBulk)
 ```
 
+## Node.js SDK Access Pattern
+
+Node.js uses `app.datastore()` → `datastore.table('Name')`. All operations return promises. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+```js
+const datastore = app.datastore();
+const table = datastore.table('SampleTable');
+
+// CRUD
+await table.insertRows([{ Name: 'Amelia', Age: 25 }]);
+const rows = await table.getPagedRows({ maxRows: 200, nextToken: 'token' });
+const row = await table.getRow(rowId);
+await table.updateRows([{ ROWID: id, Name: 'Updated' }]);
+await table.deleteRow(rowId);
+
+// Bulk
+await datastore.bulkRead({ table_name: 'SampleTable' });
+await datastore.bulkWrite({ table_name: 'SampleTable', file_id: fileId });
+await datastore.bulkDelete({ table_name: 'SampleTable', ids: [id1, id2] });
+```
+
+**Key difference from Java**: No separate `getTable()` vs `getTableInstance()` distinction — `datastore.table()` always creates a lightweight reference (no API call). Bulk operations are on the `datastore` object in Node.js (vs `ZCDataStoreBulk` in Java).
+
 ## Sources
 
 - [[catalyst-java-sdk-data-store]] — Complete SDK documentation (10 operations)
 - [[catalyst-java-sdk-overview]] — Mentions Data Store as Cloud Scale component
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK Data Store (11 pages)
 
 ## Related Concepts
 
@@ -55,4 +79,4 @@ ZCObject.getInstance()
 
 ## Evolution
 
-_Previously only mentioned as a Cloud Scale component. Now fully documented with all 10 SDK operations._
+_Fully documented across both Java and Node.js SDKs. Node.js SDK simplifies the access pattern (no separate instance vs full-object methods) while maintaining the same 10+ operations._

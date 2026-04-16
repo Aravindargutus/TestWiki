@@ -2,8 +2,8 @@
 title: AppSail
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-overview-serverless.md]
 tags: [serverless, appsail, web-service, deployment]
 ---
 
@@ -41,9 +41,29 @@ public class AuthProviderImpl implements AuthHeaderProvider {
 CatalystSDK.init(new AuthProviderImpl(request));
 ```
 
+## Node.js SDK Initialization
+
+Node.js AppSail initialization is simpler than Java — no `AuthHeaderProvider` interface needed. [Source: catalyst-nodejs-sdk-overview-serverless.md]
+
+```js
+const catalyst = require('zcatalyst-sdk-node');
+const express = require('express');
+const app = express();
+
+app.get((req, res) => {
+  let catalystApp = catalyst.initialize(req);
+  // Full access to all Catalyst components
+});
+
+app.listen(process.env('X_ZOHO_CATALYST_LISTEN_PORT') || 9000);
+```
+
+**Key difference**: Java requires implementing `AuthHeaderProvider` interface and using `CatalystSDK.init()`. Node.js uses the same `catalyst.initialize(req)` as Advanced I/O Functions. Not available for OCI images through custom runtime.
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-overview-serverless]] — Node.js AppSail initialization
 
 ## Related Concepts
 

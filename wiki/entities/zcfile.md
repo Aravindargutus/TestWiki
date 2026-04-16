@@ -2,9 +2,9 @@
 title: ZCFile
 type: entity
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
-tags: [sdk, java, file-store, class]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
+tags: [sdk, java, nodejs, file-store, class]
 ---
 
 # ZCFile
@@ -31,9 +31,25 @@ tags: [sdk, java, file-store, class]
 | `getFolder(String name)` | Get folder details by name (API call) |
 | `getFolder()` | List all folders (API call) |
 
+## Node.js SDK Equivalent
+
+In Node.js, File Store is accessed via `app.filestore()` → `filestore.folder(folderId)`. [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
+| Java SDK | Node.js SDK |
+|----------|-------------|
+| `ZCFile.getInstance()` | `app.filestore()` |
+| `getFolderInstance(id)` / `getFolder(id)` | `filestore.folder(folderId)` |
+| `folder.uploadFile(file)` | `folder.uploadFile({ code: stream, name: 'file.ext' })` |
+| `folder.downloadFile(fileId)` | `folder.downloadFile(fileId)` |
+| `folder.deleteFile(fileId)` | `folder.deleteFile(fileId)` |
+| `getFolder()` (list all) | `folder.getDetails()` |
+
+**Key difference**: Java `getFolderInstance` accepts both ID and name; Node.js `folder()` accepts only folderId. Node.js upload uses `{ code, name }` object instead of a File.
+
 ## Appearances
 
 - [[catalyst-java-sdk-cloud-scale-remaining]] — File Store SDK operations
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js File Store SDK operations
 
 ## Relationships
 

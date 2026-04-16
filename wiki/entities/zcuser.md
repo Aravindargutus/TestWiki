@@ -2,9 +2,9 @@
 title: ZCUser
 type: entity
 created: 2026-04-05
-updated: 2026-04-05
-sources: [catalyst-java-sdk-authentication.md, catalyst-java-sdk-overview.md]
-tags: [catalyst, java, sdk, class, authentication, users]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-authentication.md, catalyst-java-sdk-overview.md, catalyst-nodejs-sdk-cloud-scale-core.md]
+tags: [catalyst, java, nodejs, sdk, class, authentication, users]
 ---
 
 # ZCUser
@@ -37,10 +37,33 @@ tags: [catalyst, java, sdk, class, authentication, users]
 | `generateCustomToken(tokenDetails)` | Generate third-party auth token | ZCCustomTokenResponse |
 | `deleteUser(userId)` | Permanently delete a user | — |
 
+## Node.js SDK Equivalent
+
+In the Node.js SDK, user management is accessed via `app.userManagement()` instead of `ZCUser.getInstance()`. All methods return promises. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+| Java SDK | Node.js SDK |
+|----------|-------------|
+| `ZCUser.getInstance()` | `app.userManagement()` |
+| `registerUser(ZCSignUpData)` | `registerUser(signupConfig, userConfig)` |
+| `addUser(ZCSignUpData)` | `addUserToOrg(orgId, signupConfig, userConfig)` |
+| `getAllOrgs()` | `getAllOrganizations()` |
+| `getAllUser()` | `getAllUsers()` |
+| `getAllUser(orgId)` | `getAllUsersOfOrg(orgId)` |
+| `getCurrentUser()` | `getCurrentUser()` |
+| `getUser(userId)` | `getUserDetails(userId)` |
+| `updateUser(userId, detail)` | `updateUser(userId, config)` |
+| `updateUserStatus(userId, status)` | `enableUser(userId)` / `disableUser(userId)` |
+| `resetPassword(ZCSignUpData)` | `resetPassword(signupConfig, userConfig)` |
+| `generateCustomToken(details)` | `getServerToken()` |
+| `deleteUser(userId)` | `deleteUser(userId)` |
+
+**Key difference**: Java uses `ZCSignUpData` beans; Node.js uses plain JSON objects for `signupConfig` and `userConfig`.
+
 ## Appearances
 
 - [[catalyst-java-sdk-authentication]] — Full documentation of all methods
 - [[catalyst-java-sdk-overview]] — Referenced as part of the SDK component hierarchy
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK equivalent via `app.userManagement()`
 
 ## Relationships
 
@@ -52,3 +75,5 @@ tags: [catalyst, java, sdk, class, authentication, users]
 ## Notes
 
 - `getAllUser()` (no args) returns all app users; `getAllUser(orgId)` returns users in a specific org — same method name, different signatures (overloaded).
+- Node.js SDK uses separate method names (`getAllUsers` vs `getAllUsersOfOrg`) instead of overloading.
+- Node.js SDK splits `updateUserStatus(userId, status)` into explicit `enableUser(userId)` / `disableUser(userId)`.

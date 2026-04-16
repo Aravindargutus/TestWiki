@@ -2,8 +2,8 @@
 title: Zia Services
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-zia-services.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-zia-services.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
 tags: [zia, ai, ml, cloud-scale]
 ---
 
@@ -24,9 +24,40 @@ Zia Services is Catalyst's AI/ML component suite powered by Zoho's Zia AI engine
 - **Analysis modes**: BASIC/MODERATE/ADVANCED for Face Analytics and Image Moderation
 - **Data center restrictions**: AutoML (US only), Document Processing (IN only), Facial Comparison (global)
 
+## Node.js SDK Access Pattern
+
+All via `app.zia()` with `fs.createReadStream()` for file inputs. [Source: catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
+
+```js
+const zia = app.zia();
+
+// Vision
+await zia.extractOpticalCharacters(fs.createReadStream('./doc.png'));
+await zia.detectFaces(fs.createReadStream('./photo.jpg'));
+await zia.moderateImage(fs.createReadStream('./img.jpg'));
+await zia.detectObject(fs.createReadStream('./img.jpg'));
+await zia.scanBarcode(fs.createReadStream('./barcode.png'), { format: 'ALL' });
+
+// Identity
+await zia.compareFaces(stream1, stream2);
+await zia.extractOpticalCharacters(stream, { modelType: 'AADHAAR' });
+
+// NLP
+await zia.getSentimentAnalysis(['text...'], ['keywords']);
+await zia.getNamedEntityRecognition(['text...']);
+await zia.getKeywordExtraction(['text...']);
+await zia.getAllTextAnalytics(['text...']);
+
+// Custom ML
+await zia.getRegression(modelId, inputData);
+```
+
+**Key differences from Java**: Node.js uses `fs.createReadStream()` instead of Java File objects. Aadhaar scanner shares `extractOpticalCharacters()` with `modelType` option (Java has separate `getContentForAadhaar()` method). Text analytics methods accept arrays of strings.
+
 ## Sources
 
 - [[catalyst-java-sdk-zia-services]]
+- [[catalyst-nodejs-sdk-zia-smartbrowz-jobs]] — Node.js Zia Services (14 pages)
 
 ## Related Concepts
 

@@ -2,8 +2,8 @@
 title: Catalyst Pipelines
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
 tags: [pipelines, ci-cd, deployment]
 ---
 
@@ -21,9 +21,22 @@ Catalyst Pipelines implements CI/CD automation for building, testing, and deploy
 - **Returns run history**: history_id, pipeline_id, event_time, history_status
 - **Pipeline statuses**: Active (from details), Queued (from execution)
 
+## Node.js SDK Access Pattern
+
+```js
+const pipeline = app.pipeline();
+const details = await pipeline.getPipelineDetails('pipelineId');
+const result = await pipeline.runPipeline('pipelineId', 'main', { EVENT: 'push', URL: 'https://example.com' });
+```
+
+Returns: `{ history_id, pipeline_id, event_time, event_details, history_status: 'Queued' }`. [Source: catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
+
+**Key difference**: Java uses `ZCPipeline.getInstance()` + `getPipelineInstance(id)` two-step; Node.js directly calls `app.pipeline()` methods.
+
 ## Sources
 
 - [[catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors]]
+- [[catalyst-nodejs-sdk-zia-smartbrowz-jobs]] — Node.js Pipelines (3 pages)
 
 ## Related Concepts
 

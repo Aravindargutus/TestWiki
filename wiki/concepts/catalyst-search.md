@@ -2,8 +2,8 @@
 title: Catalyst Search
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, search, data-store]
 ---
 
@@ -34,9 +34,27 @@ search.setSearchTableColumns(map);
 ArrayList<ZCRowObject> rows = ZCSearch.getInstance().executeSearchQuery(search);
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+const search = app.search();
+const result = await search.executeSearchQuery({
+  search: 'santh*',
+  search_table_columns: {
+    SampleTable: ['SearchIndexedColumn'],
+    Users: ['SearchTest']
+  }
+});
+```
+
+Returns JSON with table names as keys and matching row arrays as values. [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
+**Key difference**: Java uses `ZCSearchDetails` object with setters; Node.js uses a plain JSON config object.
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js Search (2 pages)
 
 ## Related Concepts
 

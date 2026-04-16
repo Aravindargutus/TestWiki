@@ -2,8 +2,8 @@
 title: Cache
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, cache, key-value]
 ---
 
@@ -33,9 +33,25 @@ String name = segment.getCacheValue("Name");
 segment.deleteCacheValue("Name");
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+const cache = app.cache();
+const segment = cache.segment();         // default segment
+const segment = cache.segment(segmentId); // specific segment
+
+await segment.put('Name', 'Amelia');
+const value = await segment.getValue('Name');
+await segment.update('Name', 'Updated');
+await segment.delete('Name');
+```
+
+**Key difference**: Node.js `cache.segment()` without args returns the default segment. Methods use shorter names (`put`/`getValue`/`update`/`delete`). [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js Cache (6 pages)
 
 ## Related Concepts
 

@@ -2,9 +2,9 @@
 title: ZCObject (Stratus)
 type: entity
 created: 2026-04-05
-updated: 2026-04-05
-sources: [catalyst-java-sdk-stratus.md]
-tags: [catalyst, java-sdk, stratus, class, object]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-stratus.md, catalyst-nodejs-sdk-cloud-scale-core.md]
+tags: [catalyst, java-sdk, nodejs-sdk, stratus, class, object]
 ---
 
 # ZCObject (Stratus)
@@ -33,9 +33,23 @@ tags: [catalyst, java-sdk, stratus, class, object]
 | `putMeta(metaMap)` | Admin | JSONObject | Add/replace object metadata |
 | `getUnzipStatus(key, taskId)` | Admin | JSONObject | Check zip extraction status |
 
+## Node.js SDK Equivalent
+
+In Node.js, object-level ops are accessed via `bucket.object('key')`. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+| Java SDK | Node.js SDK |
+|----------|-------------|
+| `bucket.getObjectInstance(key)` | `bucket.object('key')` |
+| `listPagedVersions(max, token)` | `objectIns.listVersions()` |
+| `getDetails()` / `getDetails(versionId)` | `objectIns.getDetails()` |
+| `putMeta(metaMap)` | `objectIns.putMeta({ key: value })` |
+
+**Same metadata rules apply**: Max 2047 chars, alphanumeric + underscores + whitespace + hyphens. `putMeta()` is destructive (replaces all metadata).
+
 ## Appearances
 
 - [[catalyst-java-sdk-stratus]] — Primary documentation source
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK object operations
 
 ## Relationships
 

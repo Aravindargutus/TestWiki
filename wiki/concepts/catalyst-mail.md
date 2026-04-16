@@ -2,8 +2,8 @@
 title: Catalyst Mail
 type: concept
 created: 2026-04-06
-updated: 2026-04-06
-sources: [catalyst-java-sdk-cloud-scale-remaining.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, mail, email]
 ---
 
@@ -36,9 +36,26 @@ mail.setContent("Body text");
 ZCMail.getInstance().sendMail(mail);
 ```
 
+## Node.js SDK Access Pattern
+
+```js
+const email = app.email();
+await email.sendMail({
+  from_email: 'noreply@example.com',
+  to_email: ['user@example.com'],
+  subject: 'Test Email',
+  content: '<p>Hello!</p>'
+});
+```
+
+Supports public domains, organization domains, and external SMTP clients. [Source: catalyst-nodejs-sdk-cloud-scale-remaining.md]
+
+**Key difference**: Java uses `ZCMailContent` bean with setters; Node.js uses a plain JSON config.
+
 ## Sources
 
 - [[catalyst-java-sdk-cloud-scale-remaining]]
+- [[catalyst-nodejs-sdk-cloud-scale-remaining]] — Node.js Mail (2 pages)
 
 ## Related Concepts
 

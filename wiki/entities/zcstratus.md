@@ -2,9 +2,9 @@
 title: ZCStratus
 type: entity
 created: 2026-04-05
-updated: 2026-04-05
-sources: [catalyst-java-sdk-stratus.md]
-tags: [catalyst, java-sdk, stratus, class]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-stratus.md, catalyst-nodejs-sdk-cloud-scale-core.md]
+tags: [catalyst, java-sdk, nodejs-sdk, stratus, class]
 ---
 
 # ZCStratus
@@ -29,9 +29,21 @@ tags: [catalyst, java-sdk, stratus, class]
 | `listBuckets()` | Admin | List\<ZCBucket\> | Return all buckets in the organization |
 | `bucketInstance(name)` | — | ZCBucket | Create a bucket reference (no API call) |
 
+## Node.js SDK Equivalent
+
+In the Node.js SDK, Stratus is accessed via `app.stratus()`. [Source: catalyst-nodejs-sdk-cloud-scale-core.md]
+
+| Java SDK | Node.js SDK |
+|----------|-------------|
+| `ZCStratus.getInstance()` | `app.stratus()` |
+| `headBucket(name, throwErr)` | `stratus.checkBucketAvailability('name')` |
+| `listBuckets()` | `stratus.listBuckets()` |
+| `bucketInstance(name)` | `stratus.bucket('name')` |
+
 ## Appearances
 
 - [[catalyst-java-sdk-stratus]] — Primary documentation source
+- [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK equivalent via `app.stratus()`
 
 ## Relationships
 
