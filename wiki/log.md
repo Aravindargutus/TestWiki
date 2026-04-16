@@ -8,6 +8,12 @@ created: 2026-04-05
 
 Chronological record of all wiki operations.
 
+## [2026-04-16] deepen | Node.js SDK Cross-Referencing Across Entity & Concept Pages
+Deepened 8 entity pages and 18 concept pages with Node.js SDK v2 equivalents, code samples, and cross-SDK comparison tables. Every page that previously only referenced Java SDK sources now includes Node.js `app.*()` access patterns, method mappings, and key differences. Entities updated: [[zcuser]], [[zcobject]], [[zcstratus]], [[zcbucket]], [[zcobject-stratus]], [[zcfile]], [[zccache]], [[zcml]], [[zcnosql]], [[smartbrowz]]. Concepts updated: [[catalyst-authentication]], [[data-store]], [[stratus]], [[nosql]], [[file-store]], [[cache]], [[zcql]], [[catalyst-search]], [[catalyst-mail]], [[push-notifications]], [[circuits]], [[zia-services]], [[browser-grid]], [[pdf-screenshot]], [[job-scheduling-sdk]], [[catalyst-pipelines]], [[quickml]], [[connectors-external]], [[connections-sdk]], [[identity-scanner]], [[text-analytics]], [[appsail]].
+
+## [2026-04-16] ingest | Catalyst General Topics — Getting Started, Services, DevOps, Deployment
+Ingested general platform documentation from `docs.catalyst.zoho.com/en/` covering 10+ sub-pages: Introduction to Catalyst, Quick Start Guide, CLI Installation, Projects, Console Navigation, Organizations, Environments/Deployment/Billing, DevOps, ConvoKraft, Signals, Slate. Created raw source: `raw/catalyst-general-topics.md`. Pages created: [[catalyst-general-topics]] (source), [[catalyst-cli]] (entity), [[catalyst-projects]], [[catalyst-console]], [[catalyst-environments]], [[catalyst-devops]], [[catalyst-convokraft]], [[catalyst-signals]], [[catalyst-slate]] (concepts). Pages updated: [[zoho-catalyst]] (15 sources, 11-service platform), [[catalyst-organizations]] (2 sources), [[index]], [[overview]], [[log]].
+
 ## [2026-04-05] init | Wiki initialized
 Created directory structure, schema, index, overview, and templates. Ready for first source ingest.
 

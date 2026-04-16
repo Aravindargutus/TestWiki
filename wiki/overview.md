@@ -2,8 +2,8 @@
 title: Overview
 type: overview
 created: 2026-04-05
-updated: 2026-04-07
-sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-nodejs-sdk-overview-serverless.md, catalyst-nodejs-sdk-cloud-scale-core.md, catalyst-nodejs-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md]
+updated: 2026-04-16
+sources: [catalyst-java-sdk-overview.md, catalyst-java-sdk-authentication.md, catalyst-java-sdk-data-store.md, catalyst-java-sdk-stratus.md, catalyst-serverless-functions.md, catalyst-java-sdk-cloud-scale-remaining.md, catalyst-java-sdk-zia-services.md, catalyst-java-sdk-smartbrowz.md, catalyst-java-sdk-job-scheduling-pipelines-quickml-connectors.md, catalyst-nodejs-sdk-overview-serverless.md, catalyst-nodejs-sdk-cloud-scale-core.md, catalyst-nodejs-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-zia-smartbrowz-jobs.md, catalyst-general-topics.md]
 ---
 
 # Overview
@@ -139,6 +139,33 @@ The Serverless Functions documentation (first non-SDK source) reveals the core c
 - **`catalyst-config.json`**: Universal configuration file across all runtimes and types
 - **Management tools**: Security Rules, API Gateway, Logs, APM, Circuits (not yet detailed)
 
+## General Topics (Platform Documentation)
+
+The 15th source covers **non-SDK platform documentation** from `docs.catalyst.zoho.com/en/`, revealing the full development lifecycle and 4 previously undocumented services. [Source: catalyst-general-topics.md]
+
+### Platform Facts
+- Catalyst is an **11-service platform**: Serverless, Cloud Scale, Zia Services, DevOps, SmartBrowz, QuickML, ConvoKraft, Job Scheduling, Slate, Pipelines, Signals
+- **4 client SDKs** (Web v4, Android v2, iOS v2, Flutter v2) and **3 server languages** (Java, Node.js, Python 3.9)
+- Max **50 projects per account**; one web/Android/iOS app per project
+- **Development** (free sandbox) and **Production** (billed per API call) environments
+- **Two pricing models**: Subscription or Pay-as-you-go
+
+### Developer Toolchain
+- **Catalyst CLI** (`zcatalyst-cli`): npm package for init, test (`catalyst serve`), deploy lifecycle
+- Requires Node.js v14+; works with development environment only
+- First project must be created via console, not CLI
+
+### Organizations
+- Multi-org management from single account; each org has unique Org ID
+- Default org used for all login and API calls unless explicitly overridden
+- Collaborator roles: Owner (creator), Admin, Project Member
+
+### New Services
+- **ConvoKraft**: AI chatbot builder — Bots, Actions, Handlers, Bot Operations
+- **Signals**: Event Bus Service — Publishers, Events, Targets, Webhooks, Rules
+- **Slate**: Frontend deployment — Git-based, JS frameworks, custom domains, rollback, previews
+- **DevOps**: Application Alerts, APM, Logs, Metrics, GitHub Integration, Automation Testing
+
 ## Knowledge Gaps
 
 - ~~File Store, ZCQL, Cache, Search, Mail, Push Notifications SDK operations not yet ingested~~ — DONE
@@ -150,8 +177,14 @@ The Serverless Functions documentation (first non-SDK source) reveals the core c
 - ~~NoSQL SDK pages consistently failed to load~~ — DONE (10 pages via docs-ea.catalyst.zoho.com/en/sdk/java/v1/)
 - ~~Node.js SDK and other language SDKs not yet covered~~ — Node.js SDK v2 DONE (~131 pages)
 - Platform pricing, limits, and deployment mechanics unknown
+- ~~Platform pricing, limits, and deployment mechanics unknown~~ — Partially DONE (environments, billing model documented; exact rates still unknown)
 - Roles and permissions deep-dive needed (how RoleId maps to scopes)
+- ~~Roles and permissions deep-dive needed~~ — Partially DONE (Owner/Admin/Project Member roles documented)
 - Function memory limits and cold start characteristics unknown
 - Integration Functions data center expansion plans unknown
 - ~~Security Rules and API Gateway details not yet documented~~ — DONE (Security Rules 3 pages, API Gateway 5 pages)
 - Connectors vs Connections SDK disambiguation needs deeper analysis
+- ConvoKraft detailed Actions/Handlers API not yet documented
+- Signals detailed Events schema and Rules API not yet documented
+- Slate detailed configuration and deployment API not yet documented
+- DevOps APM and Automation Testing API details not yet documented
