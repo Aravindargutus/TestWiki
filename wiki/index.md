@@ -67,12 +67,16 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[basic-io-functions]] — Simple JSON I/O with `/execute` URL pattern (1 source)
 - [[advanced-io-functions]] — Full HTTP framework support: Express, Servlet, Flask (1 source)
 - [[event-functions]] — Async functions triggered by Event Listeners (1 source)
+- [[event-listeners]] — Event bus component listening for Catalyst/custom/Zoho events (1 source)
 - [[cron-functions]] — Scheduled periodic execution via Cron jobs (1 source)
+- [[cron]] — Cloud Scale job scheduler triggering URLs, cron functions, or circuits (1 source)
 - [[browser-logic-functions]] — Playwright-based browser automation via SmartBrowz (1 source)
-- [[integration-functions]] — Backend for Zoho services, Cliq only, US-only (1 source)
+- [[integration-functions]] — Backend for Zoho services, Cliq only; excluded in EU/AU/IN/JP/SA/CA (1 source)
 - [[job-functions]] — Background tasks via Job Scheduling pools (1 source)
 - [[function-urls]] — URL patterns and accessibility across function types (1 source)
 - [[catalyst-config]] — Universal function configuration file (1 source)
+- [[runtime-support-policy]] — 4-phase language runtime deprecation lifecycle (1 source)
+- [[cost-optimization]] — Credit-based pricing formula and memory tuning strategy (1 source)
 - [[file-store]] — Original cloud-scale file storage, predecessor to Stratus (2 sources)
 - [[zcql]] — Catalyst query language for Data Store operations (2 sources)
 - [[cache]] — In-memory key-value cache organized in segments (2 sources)
@@ -103,6 +107,17 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[catalyst-convokraft]] — AI conversational bot service with Actions, Handlers, Bot Operations (1 source)
 - [[catalyst-signals]] — Event Bus Service: Publishers, Targets, Events, Webhooks, Rules (1 source)
 - [[catalyst-slate]] — Frontend deployment platform with Git-based automation and custom domains (1 source)
+- [[web-client-hosting]] — Basic web client hosting (one app per project, console/CLI/GitHub deploy)
+- [[mobile-device-management]] — Host/distribute Android + iOS apps via ManageEngine MDM (not in EU/AU/IN/JP/SA/CA)
+- [[domain-mappings]] — Map custom domains to production URL (5 max per app, free Group SSL)
+- [[application-alerts]] — Email alerts on Cron/Event Listener/Logs events (5 dev / 20 prod)
+- [[apm]] — Function performance monitoring (Java/Node.js only, not in CA DC)
+- [[catalyst-logs]] — Execution logs (Access vs Application; 7d dev / 14d prod retention)
+- [[catalyst-metrics]] — Resource-usage dashboards for project consumption
+- [[automation-testing]] — Automated API tests against function URLs or any third-party URL
+- [[olap-database]] — Built-in read-only analytics engine synced from Data Store; ZCQL-queried
+- [[audit-logs]] — Console + Application activity logs; 1yr UI / 6yr export; HIPAA-grade
+- [[environment-variables]] — Per-env key/value config for Functions, AppSail, Slate (dev vs prod)
 
 ## Comparisons
 _No comparisons yet._

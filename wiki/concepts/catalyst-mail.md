@@ -2,9 +2,9 @@
 title: Catalyst Mail
 type: concept
 created: 2026-04-06
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
-tags: [cloud-scale, mail, email]
+tags: [cloud-scale, mail, email, smtp]
 ---
 
 # Catalyst Mail
@@ -12,6 +12,37 @@ tags: [cloud-scale, mail, email]
 ## Definition
 
 Catalyst Mail enables sending emails from Catalyst applications. Emails are sent through configured domains and email addresses set up in the Catalyst console. [Source: catalyst-java-sdk-cloud-scale-remaining.md]
+
+## Platform Overview
+
+> Source: [Mail Help](https://docs.catalyst.zoho.com/en/cloud-scale/help/mail/) — Introduction, Email Configuration, SMTP Configuration, Domains, Send Emails.
+
+### Purpose
+Cloud Scale component for securely sending transactional or mass communication emails to end-users. Supports per-department sender addresses (marketing / support / finance / etc.) configured directly in the console.
+
+### Configuration Model (Console)
+Three setup areas under **Mail** in the console:
+| Area | Purpose |
+|---|---|
+| **Email Configuration** | Add / verify / manage sender email addresses; store multiple per project |
+| **SMTP Configuration** | Optional — integrate an **external email client** via custom SMTP instead of Catalyst's built-in client |
+| **Domains** | Configure public-domain addresses (no SMTP config needed for supported providers) or **private / organization-owned domains** |
+
+### Client Options
+- **Built-in email client** (default) — managed delivery optimized by Catalyst
+- **Custom SMTP** — bring-your-own email client via SMTP settings
+
+### Supported Features (Platform-Level)
+- File attachments
+- CC / BCC
+- Public domain or private/custom domain as sender
+- Multiple sender addresses per project
+- High scalability under load
+
+### Access Paths
+- Java, Node.js, Python SDKs
+- REST API (`SendEmail`)
+- Console test-send (via sender config)
 
 ## Key Aspects
 

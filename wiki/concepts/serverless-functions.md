@@ -2,7 +2,7 @@
 title: Serverless Functions
 type: concept
 created: 2025-07-10
-updated: 2025-07-10
+updated: 2026-04-17
 sources: [catalyst-serverless-functions.md]
 tags: [serverless, functions, compute, catalyst]
 ---
@@ -21,8 +21,13 @@ Serverless Functions are the core compute units of the [[zoho-catalyst]] platfor
 3. **[[event-functions]]** — Async, triggered by Event Listeners (DataStore, Cache, Auth, FileStore, GitHub)
 4. **[[cron-functions]]** — Periodic execution via Cron job schedules
 5. **[[browser-logic-functions]]** — Playwright-based browser automation (SmartBrowz)
-6. **[[integration-functions]]** — Backend for Zoho services (Cliq only, US-only)
+6. **[[integration-functions]]** — Backend for Zoho services (Cliq only; not available in EU, AU, IN, JP, SA, CA data centers)
 7. **[[job-functions]]** — Background tasks via Job Scheduling pools
+
+> Note: The official [Functions Introduction](https://docs.catalyst.zoho.com/en/serverless/help/functions/introduction/) page enumerates 5 types in prose (Basic I/O, Advanced I/O, Event, Cron, Integration). Browser Logic and Job Functions are documented as separate function types in dedicated sub-pages. All 7 are treated as first-class function types here.
+
+### Per-Type Boilerplate
+Each function type is initialized with different default code and modules (e.g., `javax.servlet` for Advanced I/O Java, `flask` for Advanced I/O Python, `CatalystJobHandler` for Job). Do not copy code across function types — initialize each via the CLI or console to get the correct boilerplate.
 
 ### Runtime Support
 - **Java**: 8, 11, 17 
@@ -59,6 +64,8 @@ All functions use `catalyst-config.json` as their configuration file, regardless
 - [[function-urls]] — URL patterns across function types
 - [[catalyst-config]] — Shared configuration file
 - [[sdk-scopes]] — Access control for SDK operations (related but documented separately)
+- [[runtime-support-policy]] — 4-phase language version deprecation lifecycle
+- [[cost-optimization]] — Memory configuration and credit-based pricing for functions
 
 ## Evolution
 

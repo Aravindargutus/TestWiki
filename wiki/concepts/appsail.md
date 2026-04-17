@@ -2,9 +2,9 @@
 title: AppSail
 type: concept
 created: 2026-04-06
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-overview-serverless.md]
-tags: [serverless, appsail, web-service, deployment]
+tags: [serverless, appsail, web-service, deployment, oci, container]
 ---
 
 # AppSail
@@ -12,6 +12,66 @@ tags: [serverless, appsail, web-service, deployment]
 ## Definition
 
 AppSail is Catalyst's fully-managed platform for deploying web services. Unlike serverless functions (which are event/request-driven with timeouts), AppSail hosts persistent web applications. Using the Catalyst SDK in AppSail requires implementing the `AuthHeaderProvider` interface for initialization. [Source: catalyst-java-sdk-cloud-scale-remaining.md]
+
+## Platform Overview
+
+> Source: [AppSail Introduction](https://docs.catalyst.zoho.com/en/appsail/help/introduction/) and related help pages. Distinct from the SDK-specific material below.
+
+### Two Runtime Modes
+
+| Mode | What it is | Languages / frameworks |
+|---|---|---|
+| **Catalyst-Managed Runtime** | Deploy raw build files; Catalyst provisions the runtime | Native support for **Java, Node.js, Python** (any framework/library that is not platform-dependent) |
+| **Custom Runtime** | Deploy an OCI container image | **Any** language/framework — PHP, Go, Ruby, or unsupported Java/Node/Python versions |
+
+**Container constraints**: Only **OCI-compliant images built for Linux AMD64 (x86-64)** are accepted.
+
+**Container sources** (Custom Runtime):
+- Docker Hub
+- AWS Elastic Container Registry (ECR)
+- Google Artifact Registry
+- Local registry
+
+**CLI protocols for local images**:
+- `docker://localhost/<image>:<tag>` — Docker Image Protocol
+- `docker-archive://<file>.tar` — Docker Archive Protocol (via `docker save`)
+
+### How AppSail differs from [[serverless-functions]]
+- **Persistent**, always-on web service (vs. event-driven, time-boxed functions)
+- **No Catalyst-specific coding template required** — any standard web app works
+- Catalyst auto-scales instances based on traffic
+- Each service gets an auto-generated AppSail URL; custom domains can be mapped
+
+### Deployment Methods
+1. **From the Catalyst CLI**
+   - Catalyst-Managed: `catalyst appsail:init` → deploy; also supports standalone deploy and `appsail:add` to attach to an existing project
+   - Custom Runtime: init with Docker Image or Docker Archive protocol, then deploy
+   - Local testing via localhost is supported for both
+2. **From the Catalyst Console**
+   - Catalyst-Managed: upload build file in the Serverless section, configure, deploy
+   - Custom Runtime: connect a registry integration, point to image URL, deploy
+
+### Configuration: `app-config.json`
+Created on init for Catalyst-Managed Runtime apps. Configurable settings:
+- **Memory** allocation
+- **Disk size**
+- **Port** the app listens on (`X_ZOHO_CATALYST_LISTEN_PORT` env var is exposed at runtime)
+- **Environment variables**
+- **Startup command**
+- **Stack / runtime** version
+
+For Custom Runtime, these details are already baked into the OCI image, so most `app-config.json` fields aren't required — only a service name.
+
+### Build File Notes
+- Java WAR: main file must be named `root.war` (or use explicit controllers)
+
+### Instance Management
+- Catalyst spawns server instances on demand and scales up/down with traffic
+- Live instances are visible in the console; individual instances can be deleted
+- Execution logs, performance stats, and DevOps [[catalyst-devops]] tools (Logs, APM) apply
+
+### SDK Interop
+AppSail apps can still use any Catalyst component via the platform-specific SDK — see the SDK sections below. **Not** available for OCI/Custom Runtime images (since the Catalyst SDK isn't auto-injected into arbitrary container runtimes).
 
 ## Key Aspects
 

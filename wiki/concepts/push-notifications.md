@@ -2,9 +2,9 @@
 title: Push Notifications
 type: concept
 created: 2026-04-06
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
-tags: [cloud-scale, notifications, push, mobile, web]
+tags: [cloud-scale, notifications, push, mobile, web, ios, android, apns, fcm]
 ---
 
 # Push Notifications
@@ -12,6 +12,34 @@ tags: [cloud-scale, notifications, push, mobile, web]
 ## Definition
 
 Push Notifications in Catalyst supports sending notifications to both web and mobile (Android/iOS) applications. Web and mobile use separate SDK classes and have different requirements. [Source: catalyst-java-sdk-cloud-scale-remaining.md]
+
+## Platform Overview
+
+> Source: [Push Notifications Help](https://docs.catalyst.zoho.com/en/cloud-scale/help/push-notifications/) — Introduction, Architecture, iOS / Android / Web.
+
+### Purpose
+Cloud Scale component delivering remote notifications to users even when an app is not running. Used for promotional messages, alerts, offers, event updates, and actionable engagement prompts.
+
+### Supported Platforms & Delivery Mechanism
+| Platform | Delivery | Setup |
+|---|---|---|
+| **Web** | Catalyst Web SDK | Embed SDK in web client; register client via `register-client` |
+| **iOS** | **APNs** (Apple Push Notification service) | Generate APNs certificate from Apple → upload to Catalyst; iOS/Flutter SDK registers device |
+| **Android** | **Firebase Cloud Messaging (FCM)** | Generate FCM config from Firebase → configure in Catalyst; Android/Flutter SDK registers device |
+
+### Client vs Server SDKs
+- **Client-side SDKs** (register / de-register devices): iOS, Android, Flutter, Web
+- **Server-side SDKs** (send notifications): Java, Node.js, Python
+- **REST API** for all 3 platforms (Web / iOS / Android)
+
+### Console Test Send
+Test push notifications can be sent from the console to select devices for web, iOS, and Android to verify setup.
+
+### Typical Flow
+1. Configure APNs cert (iOS) / FCM project (Android) in Catalyst console
+2. Client SDK registers device (linked to authenticated user)
+3. Server SDK/API triggers `send-notifications` with target users
+4. Catalyst forwards via APNs / FCM / Web push
 
 ## Key Aspects
 

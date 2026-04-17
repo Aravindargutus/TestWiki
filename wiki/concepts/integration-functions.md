@@ -16,7 +16,7 @@ Integration Functions are [[serverless-functions]] in [[zoho-catalyst]] that ser
 ## Key Aspects
 
 ### Data Center Availability
-**NOT available** in: EU, AU, IN, JP, SA, CA data centers. Effectively US-only.
+**NOT available** in: EU, AU, IN, JP, SA, CA data centers. Available in US (and any other DCs not on the exclusion list).
 
 ### Zoho Cliq Integration
 Includes the Cliq SDK with handler classes for:
@@ -37,7 +37,7 @@ Includes the Cliq SDK with handler classes for:
 - Building Zoho Cliq bots and integrations
 - Custom slash commands for Cliq
 - Cliq message action handlers
-- Only when operating in US data center
+- Only when operating in a supported data center (not EU/AU/IN/JP/SA/CA)
 
 ## Sources
 

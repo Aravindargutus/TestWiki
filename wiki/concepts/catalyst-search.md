@@ -2,9 +2,9 @@
 title: Catalyst Search
 type: concept
 created: 2026-04-06
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
-tags: [cloud-scale, search, data-store]
+tags: [cloud-scale, search, data-store, search-integration]
 ---
 
 # Catalyst Search
@@ -12,6 +12,28 @@ tags: [cloud-scale, search, data-store]
 ## Definition
 
 Catalyst Search provides pattern-based search across indexed columns in [[data-store]] tables. Unlike [[zcql]] which queries specific tables with SQL-like syntax, Search queries across multiple tables simultaneously using wildcard patterns. [Source: catalyst-java-sdk-cloud-scale-remaining.md]
+
+## Platform Overview
+
+> Source: [Search Integration Help](https://docs.catalyst.zoho.com/en/cloud-scale/help/search-integration/).
+
+### Purpose
+Search Integration (aka Catalyst Search) is a Cloud Scale component that searches within **search-indexed columns** of Data Store tables in a single query. It offloads the memory-intensive work of implementing full-text search over high-volume datasets.
+
+### Why Not Use [[zcql]]?
+ZCQL joins can combine tables but can only filter by related columns. Search Integration provides **powerful cross-table, cross-column search** against index-enabled columns — not possible via ZCQL.
+
+### Index Source
+Columns are marked **search-indexable from the Data Store console** via the *Search Index* column constraint (see [[data-store]] Platform Overview). Indexing/un-indexing is toggled per column at any time.
+
+### Console Support
+- Ready-made **code templates** for Java, Node.js, and Python available in the console
+- Toggle indexing per Data Store column
+
+### Access Paths
+- **Server-side SDKs**: Java, Node.js, Python
+- **Client-side Web SDK** (v4)
+- **REST API**: `ExecuteSearchQuery`
 
 ## Key Aspects
 

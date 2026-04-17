@@ -2,9 +2,9 @@
 title: NoSQL
 type: concept
 created: 2026-04-07
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-nosql-security-apigateway.md, catalyst-nodejs-sdk-cloud-scale-core.md]
-tags: [catalyst, nosql, cloud-scale, database, storage]
+tags: [catalyst, nosql, cloud-scale, database, storage, partition-key, indexing]
 ---
 
 # NoSQL
@@ -12,6 +12,74 @@ tags: [catalyst, nosql, cloud-scale, database, storage]
 ## Definition
 
 Catalyst Cloud Scale NoSQL is a fully managed, non-relational database that supports document-type data storage in key-value pair based Custom JSON format. It offers schema flexibility, horizontal scalability, and master-slave replication. Accessed via `ZCNoSQL.getInstance()` → `ZCNoSQLTable`. [Source: catalyst-java-sdk-nosql-security-apigateway.md]
+
+## Platform Overview
+
+> Source: [NoSQL Help](https://docs.catalyst.zoho.com/en/cloud-scale/help/nosql/) — Introduction, Components, Create and Manage Tables, Indexing, Working with Data, Query Search, Third-Party Migration.
+
+### Basic Components (Terminology)
+| Term | Relational Equivalent | Notes |
+|---|---|---|
+| **Table** | Table | Fundamental storage unit |
+| **Item** | Row / Record | Collection of attributes; **max 400 KB per item** |
+| **Attribute** | Field / Column | Each holds a typed value |
+| **Data** | Table contents | Stored in **Catalyst Custom JSON** format |
+
+### Table Keys
+| Key | Purpose |
+|---|---|
+| **Partition Key** | Determines the logical partition (shard) an item is stored in via hash function. **Required.** |
+| **Sort Key** | Optional. Sorts items within a partition; enables range queries |
+| **Simple Primary Key** | Partition key alone (must be unique per item) |
+| **Composite Primary Key** | Partition key + sort key together (partition key values may repeat; sort key must be unique within a partition) |
+| **Additional Sort Keys** | Up to **5 per table**; pair with the partition key as alternative composite keys (similar to local indexing) |
+
+### Time to Live (TTL)
+- Configurable attribute holding **expiration timestamp in Unix epoch format** (seconds)
+- A built-in Catalyst scheduler runs **every 24 hours** and permanently deletes expired items
+- TTL removal cascades to any indexes
+- TTL attribute can be updated or removed per-item
+
+### Indexing (Secondary Indexes)
+Secondary indexes allow querying by attributes other than the main partition/sort key.
+
+- **Global by design** — an index spans all partitions of the base table
+- **Max 20 indexes per table**
+- Each index has its own partition key + sort key (can differ from main table)
+- **Auto-maintained** on insert/update/delete of base table
+- Items missing the index's partition key attribute are skipped from indexing
+
+**Three Index Types** (attribute projection modes):
+| Type | Projected Attributes |
+|---|---|
+| **All Attributes** | Every attribute of the table |
+| **Only Keys** | Partition key + sort key + additional sort keys |
+| **Specific Attributes** | User-selected subset |
+
+### Catalyst Custom JSON Format
+Attribute values are wrapped with a data type marker. Examples: `{"S": "Honolulu"}` (String), `{"N": 4960}` (Number), `{"L": [...]}` (List), `{"M": {...}}` (Map). Per-SDK construction syntax varies; canonical form is the Custom JSON used by the REST API.
+
+### Console Capabilities
+- Create/configure/delete tables
+- Define partition/sort/additional sort keys
+- Configure TTL attribute
+- Create & manage indexes (20 max)
+- Add / edit / query data
+- **Third-party migration** from external NoSQL databases
+- Query Search UI
+
+### Access Paths
+Java SDK, Node.js SDK, Python SDK, REST API.
+
+### Data Store vs NoSQL (Official Guidance)
+| Choose [[data-store]] if... | Choose NoSQL if... |
+|---|---|
+| Relational architecture with related data | Independent, unrelated data points |
+| Structured tabular data | Semi/unstructured, disparate JSON data |
+| Uniform, known schema | Flexible, evolving schema |
+| SQL querying needed | Primarily JSON + multi-type values |
+| ACID > horizontal scaling | Horizontal scaling > ACID |
+| Read-heavy | Write-heavy, distributed clusters beneficial |
 
 ## Key Aspects
 

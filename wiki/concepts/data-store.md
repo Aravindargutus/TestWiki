@@ -2,7 +2,7 @@
 title: Data Store
 type: concept
 created: 2026-04-05
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-data-store.md, catalyst-java-sdk-overview.md, catalyst-nodejs-sdk-cloud-scale-core.md]
 tags: [catalyst, cloud-scale, database, data-store, relational]
 ---
@@ -12,6 +12,72 @@ tags: [catalyst, cloud-scale, database, data-store, relational]
 ## Definition
 
 Catalyst Data Store is a cloud-scale relational database component. It stores data in tables with typed columns and rows, each row identified by a unique auto-generated ROWID. Accessible via the Java SDK through [[zcobject]] → [[zctable]] → row/column operations. [Source: catalyst-java-sdk-data-store.md]
+
+## Platform Overview
+
+> Source: [Data Store Help](https://docs.catalyst.zoho.com/en/cloud-scale/help/data-store/) — Introduction, Tables, Columns, Records, Bulk Operations, Scopes and Permissions. SDK material below covers programmatic access; this section covers console-level schema management.
+
+### Tables
+- Created **from the console** (Cloud Scale → Data Store → *Create a new Table*); not creatable via SDK
+- **Naming**: alphanumeric + underscores only; no whitespace, special characters, or leading digit
+- Auto-assigned unique **Table ID** (used by SDK/APIs)
+- Operations: Create, Rename (Edit), **Truncate** (wipe rows, retain schema; requires typing `TRUNCATE` to confirm), Delete
+- Truncate runs via background scheduler — other operations allowed while it runs
+
+### Default Columns (auto-created per table)
+| Column | Type | Notes |
+|---|---|---|
+| **ROWID** | BigInt | Primary key, auto-generated, immutable |
+| **CREATORID** | BigInt | Catalyst account user ID, immutable |
+| **CREATEDTIME** | DateTime | Record creation timestamp |
+| **MODIFIEDTIME** | DateTime | Last update timestamp |
+
+### Supported Column Data Types
+| Type | Description |
+|---|---|
+| **Text** | Long-form text, up to **10,000 chars** (supports multiline/rich text) |
+| **Var Char** | Variable-length, up to **255 chars** (requires Max Length) |
+| **Date** | `YYYY-MM-DD` |
+| **DateTime** | `YYYY-MM-DD HH:MM:SS` |
+| **Int** | 4-byte integer, up to 10 digits |
+| **BigInt** | 8-byte integer, up to 19 digits |
+| **Double** | Floating point, up to 17 digits incl. decimal |
+| **Boolean** | `true` / `false` |
+| **Foreign Key** | References primary key of another table |
+| **Encrypted Text** | Encrypted long-form, up to 10,000 chars |
+
+### Column Constraints & Validators
+- **Default Value** — used when column left empty (available for all types *except Text*)
+- **Search Index** — enables column for [[catalyst-search]] full-text search (all types except Text)
+- **IsUnique** — prevents duplicate values; **not editable after creation**
+- **IsMandatory** — rejects rows with empty value
+- **PII / ePHI Validator** — marks sensitive data (HIPAA/GDPR); logs all row-level activity to [[catalyst-devops|Audit Logs / Application Logs]]
+- **Max Length** (Var Char only) — new value must always be ≥ previous value
+
+### Foreign Key Extras
+- **Parent Table** — the referenced table
+- **On Delete** behavior:
+  - **Null** — child FK value set to null when parent row deleted
+  - **Cascade** — child row deleted entirely when parent row deleted
+
+### Column Editing Rules
+- **Cannot edit after creation**: Column ID, Data Type, IsUnique
+- All other characteristics (Name, Default Value, Mandatory, Search Index, Max Length) are editable
+
+### Limits
+| | Development | Production |
+|---|---|---|
+| Rows per table | 5,000 | No upper limit |
+| Rows per project | 25,000 | No upper limit |
+| Columns per table | 100 (increase via support@zohocatalyst.com) | No upper limit |
+
+### Console Capabilities
+- Schema View (list columns with characteristics)
+- Records View (browse/edit rows)
+- Bulk Operations (import/export)
+- Scopes & Permissions per table (Admin / User scope + role-based permissions)
+- Search by table name / column name
+- Metrics: Table Count and Row Count history
 
 ## Key Aspects
 

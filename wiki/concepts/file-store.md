@@ -2,7 +2,7 @@
 title: File Store
 type: concept
 created: 2026-04-06
-updated: 2026-04-16
+updated: 2026-04-17
 sources: [catalyst-java-sdk-cloud-scale-remaining.md, catalyst-nodejs-sdk-cloud-scale-remaining.md]
 tags: [cloud-scale, storage, file-store]
 ---
@@ -12,6 +12,41 @@ tags: [cloud-scale, storage, file-store]
 ## Definition
 
 File Store is Catalyst's original cloud-scale file storage component, organized into folders and files. It provides simple upload, download, and delete operations with a 100MB file size limit. It is being superseded by [[stratus]], which offers multipart uploads, versioning, presigned URLs, and much larger file support. [Source: catalyst-java-sdk-cloud-scale-remaining.md]
+
+## Platform Overview
+
+> Source: [File Store Help](https://docs.catalyst.zoho.com/en/cloud-scale/help/file-store/) — Introduction, Key Features, Implementation.
+
+### Console Capabilities
+- Create folders
+- Set **access permissions per folder**
+- Upload / download / rename / delete files and folders
+- Browse files organized by folder
+
+### Storage Limits
+- **Development**: 1 GB per project
+- **Production**: No upper limit (subject to billing)
+- **Per-file**: 100 MB max upload
+
+### File Store vs [[stratus]]
+
+| Feature | File Store | Stratus |
+|---|---|---|
+| Organization | Folders (flat, named) | Buckets + path-based object keys |
+| Max file size | 100 MB | Multi-GB via multipart upload |
+| Versioning | No | Yes |
+| Presigned URLs | No | Yes |
+| CORS configuration | No | Yes |
+| Permissions | Per-folder | Per-bucket template + per-object override |
+| Console URL | Single Catalyst URL | Dedicated DC-specific domain (`zohostratus.com`, etc.) |
+| Restore after delete | **No — irreversible** | Version-based recovery possible |
+
+### When to Use File Store
+- Simple use cases under 100 MB files
+- Folder-scoped permissions suffice
+- Existing Catalyst projects already using it
+
+For new projects, [[stratus]] is recommended.
 
 ## Key Aspects
 

@@ -3,8 +3,8 @@ title: Catalyst Authentication
 type: concept
 created: 2026-04-05
 updated: 2026-04-16
-sources: [catalyst-java-sdk-authentication.md, catalyst-java-sdk-overview.md, catalyst-nodejs-sdk-cloud-scale-core.md]
-tags: [catalyst, authentication, users, cloud-scale, security]
+sources: [catalyst-java-sdk-authentication.md, catalyst-java-sdk-overview.md, catalyst-nodejs-sdk-cloud-scale-core.md, docs.catalyst.zoho.com/en/cloud-scale/help/authentication]
+tags: [catalyst, authentication, users, cloud-scale, security, hosted-login, embedded, social-logins]
 ---
 
 # Catalyst Authentication
@@ -12,6 +12,57 @@ tags: [catalyst, authentication, users, cloud-scale, security]
 ## Definition
 
 The Authentication component of Catalyst Cloud Scale manages the end-to-end user lifecycle for Catalyst applications: user registration, sign-in, role assignment, organization management, password management, and user CRUD operations. Accessible via the Java SDK through the [[zcuser]] class. [Source: catalyst-java-sdk-authentication.md]
+
+## Platform Overview
+
+### Authentication Types
+
+Catalyst supports **three authentication type families**; **one instance of each family** is allowed per application. At least one must be set up before users can be added.
+
+1. **Native Catalyst Authentication**
+   - **Hosted Authentication Type** — Catalyst-hosted login/signup/password-reset UI at `/__catalyst/auth/login`; branded and styled from the console; zero custom UI code required
+   - **Embedded Authentication Type** — Login UI embedded directly into the app's own frontend
+2. **[[third-party-authentication]]** — External auth provider with Catalyst-issued custom server tokens
+
+### Console Feature Surface
+
+Five console pages covering the full Authentication component:
+
+- **Users** — User Management: add/remove end-users, enable/disable accounts, view statistics, invite new users
+- **Email Templates** — Branded templates for signup invites, password reset, verification; support `%APP_NAME%` + `%LINK%` placeholders
+- **Sign-in Method** — Configure authentication types, hosted-login page styling, [[custom-user-validation]], Public Signup toggle, **Social Logins**
+- **Roles** — Create/manage roles that define permission tiers; assign users by `RoleId`
+- **Authorized Domains** — Whitelist external domains; configure **CORS** + **iFrame** embedding permissions; Cross Domain Access
+
+### Social Logins (Sign-in Method)
+
+Built-in providers: **Zoho**, **Google**, **LinkedIn**, **Microsoft 365**, **Facebook**. Zoho-branded login requires **no OAuth credentials** (since Catalyst is a Zoho product); external providers require OAuth `Client ID` + `Client Secret`.
+
+### Public Signup
+
+Toggle that controls whether **unauthenticated users can self-register**:
+- **Enabled** → end-users sign up directly from the hosted/embedded UI
+- **Disabled** → users can only enter via admin invite / `registerUser` SDK call
+
+### Authorization Scopes
+
+- **Dev environment**: capped at **25 users**
+- **Production**: unlimited users (billing-scaled)
+
+### User Data Model (response fields)
+
+`zuid` (user ID) · `zaaid` (org ID) · `org_id` · `status` · `is_confirmed` · `email_id` · `first_name` / `last_name` · `created_time` · `role_details { role_name, role_id }` · `user_type` · `user_id` · `locale` · `time_zone` · `project_profiles`
+
+### Integrations
+
+- **[[catalyst-mail]]** — delivers signup, invite, and password-reset emails (sender must be verified)
+- **[[custom-user-validation]]** — Basic I/O function hook that gates signup/login per custom logic
+- **[[web-client-hosting]]** / **[[catalyst-slate]]** — frontend hosts that consume `/__catalyst/auth/login` redirects
+- **[[security-rules]]** / **[[api-gateway]]** — consume authenticated user identity for authorization decisions
+
+### Cross-SDK Coverage
+
+Available via **Java SDK**, **Node.js SDK v2**, **Python SDK**, **Web SDK v4**, **REST API**, plus Android / iOS / Flutter client SDKs.
 
 ## Key Aspects
 
@@ -60,6 +111,7 @@ Node.js response fields: `zuid, zaaid, org_id, status, is_confirmed, email_id, l
 - [[catalyst-java-sdk-authentication]] — Complete SDK documentation for all 11 operations
 - [[catalyst-java-sdk-overview]] — Mentions Authentication as part of Cloud Scale
 - [[catalyst-nodejs-sdk-cloud-scale-core]] — Node.js SDK authentication (11 operations)
+- [docs.catalyst.zoho.com/en/cloud-scale/help/authentication/introduction](https://docs.catalyst.zoho.com/en/cloud-scale/help/authentication/introduction/) — Console/Platform overview
 
 ## Related Concepts
 
@@ -67,6 +119,10 @@ Node.js response fields: `zuid, zaaid, org_id, status, is_confirmed, email_id, l
 - [[catalyst-organizations]] — Org management is part of authentication
 - [[custom-user-validation]] — Custom logic for signup authorization
 - [[third-party-authentication]] — External auth service integration
+- [[catalyst-mail]] — Delivers auth emails (invites, verification, password reset)
+- [[security-rules]] — Consumes authenticated identity for authorization
+- [[api-gateway]] — API-key + identity-based access control
+- [[catalyst-environments]] — 25-user dev cap; unlimited in production
 
 ## Evolution
 
