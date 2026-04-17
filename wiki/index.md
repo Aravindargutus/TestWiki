@@ -118,6 +118,12 @@ A catalog of all pages in this wiki. The LLM reads this first when answering que
 - [[olap-database]] — Built-in read-only analytics engine synced from Data Store; ZCQL-queried
 - [[audit-logs]] — Console + Application activity logs; 1yr UI / 6yr export; HIPAA-grade
 - [[environment-variables]] — Per-env key/value config for Functions, AppSail, Slate (dev vs prod)
+- [[collaborators]] — Project members, admins, and Super Admin; 100/org cap; console + CLI parity
+- [[profiles-and-permissions]] — Project-scoped RBAC; 3 default profiles + 50 custom in dev; GDPR/HIPAA-aligned
+- [[iac-settings]] — Project export/import via `project-template.json` ZIP; cross-DC/account/Git transfer
+- [[collaborators]] — Project members, admins, and Super Admin; 100/org cap; console + CLI parity
+- [[profiles-and-permissions]] — Project-scoped RBAC; 3 default profiles + 50 custom in dev; GDPR/HIPAA-aligned
+- [[iac-settings]] — Project export/import via `project-template.json` ZIP; cross-DC/account/Git transfer
 
 ## Comparisons
 _No comparisons yet._
